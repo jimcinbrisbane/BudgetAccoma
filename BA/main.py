@@ -10,4 +10,3 @@ if __name__=='__main__':
 ##best way to access variables from another thing is the=rough request.variables
 ##browser caches contain a lot of information
 ##if some session values aren't working, restart your browser
-ctx.push
