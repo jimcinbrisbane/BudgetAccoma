@@ -1,62 +1,46 @@
-# with no sql
-class room:
-    
-    def __init__(self,name, image, description):
-        self.name =name
-        self.image=image
-        self.description=description
-
-    def __repr__(self):
-        str_val="Name: {}, description: {}".format(self.name, self.description)
-        return str_val
-
-
 # with sql    
 from . import db
 from datetime import datetime
 
-
 class User(db.Model):
-    __tablename__='users' # good practice to specify table name
+    __tablename__='user' # good practice to specify table name
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), index=True, unique=True, nullable=False)
-    emailid = db.Column(db.String(100), index=True, nullable=False)
+    name = db.Column(db.String(32), index=True, unique=True, nullable=False)
+    emailid = db.Column(db.String(32), index=True, nullable=False)
 	#password is never stored in the DB, an encrypted password is stored
 	# the storage should be at least 255 chars long
     password_hash = db.Column(db.String(255), nullable=False)
-
+    def __repr__(self): #string print method
+        return "<name: {}, emailid: {}>".format(self.name, self.emailid)
     # relation to call user.comments and comment.created_by
-    comments = db.relationship('Comment', backref='user')
 
-
-
-
-
-class Destination(db.Model):
-    __tablename__ = 'destinations'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80))
-    description = db.Column(db.String(200))
-    image = db.Column(db.String(400))
-    currency = db.Column(db.String(3))
-    # ... Create the Comments db.relationship
-	# relation to call destination.comments and comment.destination
-    comments = db.relationship('Comment', backref='destination')
-
-    
-	
+class Item(db.Model):
+    __tablename__ = 'item'
+    id = db.Column(db.String, primary_key=True)
+    title = db.Column(db.String(32))
+    description = db.Column(db.String(255))
+    image = db.Column(db.String(32))
+    price = db.Column(db.String(10))
+    address = db.Column(db.String(255))
+    water = db.Column(db.Boolean)
+    wifi = db.Column(db.Boolean)
+    eletricity = db.Column(db.Boolean)
+    gas = db.Column(db.Boolean)
+    mobile = db.Column(db.Integer)
+   
+    #user_id = db.relationship('User', backref='user')
     def __repr__(self): #string print method
         return "<Name: {}>".format(self.name)
 
-class Comment(db.Model):
-    __tablename__ = 'comments'
+
+class Bid(db.Model):
+    __tablename__ = 'bid'
     id = db.Column(db.Integer, primary_key=True)
-    text = db.Column(db.String(400))
-    created_at = db.Column(db.DateTime, default=datetime.now())
-    #add the foreign keys
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    destination_id = db.Column(db.Integer, db.ForeignKey('destinations.id'))
+    date = db.Column(db.DateTime)
+    #user_id = db.relationship('User', backref='user')
+    #item_id = db.relationship('Item', backref='item')
 
 
-    def __repr__(self):
-        return "<Comment: {}>".format(self.text)
+
+
+
