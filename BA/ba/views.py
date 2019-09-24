@@ -18,15 +18,17 @@ def index():
   #destination = Destination.query.filter_by(id=id).first()  
   #cform = cokForm()
  # return render_template('user.html', destination=destination)
+ #form=RegestierForm()
+ #form2=LoginForm() 
 @mainbp.route('/landlord')
 def post():
     tag_line="I'm the landlord"
-    form=RegestierForm()
-    form2=LoginForm() 
+    
     aform = itemForm()
 
     return render_template('index_reuse.html', tag_line=tag_line,
-                    form=form, form2=form2, aform=aform)
+                    #form=form, form2=form2, 
+                    aform=aform)
 @mainbp.route('/<id>') 
 def show(id): 
   destination = Item.query.filter_by(id=id).first()  
