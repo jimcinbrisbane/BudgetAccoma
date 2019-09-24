@@ -36,13 +36,10 @@ def show(id):
 
 @mainbp.route('/create', methods = ['GET','POST'])
 def create_item():
-  print("aaa")
   aform = itemForm()
-  print("why")
   if aform.validate_on_submit():
     # if the form was successfully submitted
     # access the values in the form data
-    print("yes")
     print([aform.title.data,aform.description.data,aform.gas.data,aform.price.data,aform.water.data,aform.address.data,aform.gas.data,aform.mobile.data])
     newitem = Item(id = "jsjakaka",
                 title=aform.title.data, 
