@@ -3,7 +3,7 @@ from .models import User,Item,Bid
 from .forms import RegestierForm
 from .forms import LoginForm
 from .forms import itemForm
-
+import datetime
 from . import db
 
 mainbp = Blueprint('main',__name__)
@@ -41,7 +41,7 @@ def create_item():
     # if the form was successfully submitted
     # access the values in the form data
     print([aform.title.data,aform.description.data,aform.gas.data,aform.price.data,aform.water.data,aform.address.data,aform.gas.data,aform.mobile.data])
-    newitem = Item(id = "jsjakaka",
+    newitem = Item(id = datetime.datetime.now().isoformat(),
                 title=aform.title.data, 
                 description=aform.description.data,
                 image="working on it",
