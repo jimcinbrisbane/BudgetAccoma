@@ -2,7 +2,7 @@ from ba import create_app
 if __name__=='__main__':
     app=create_app()
     app.run(debug=True)
-    
+
 
     
 ##forms are like class templates that you can call on

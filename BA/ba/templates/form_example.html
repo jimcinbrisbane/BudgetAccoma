@@ -1,18 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p>this works</p>
+<p>this works</p>price
         
 <div class="container">
     <h2>Contact Form</h2>
     <!--update the action and the method with relevant information-->
-    <form method="post" action={{url_for('main.create')}}>
+    <form method="post" action={{url_for('main.create_item')}}>
       <!-- keeps the label and text in a group vertically stacked--> 
-      
-
+  
       <div class="form-group">
-        {{aform.name.label}}
-        {{aform.name (class="form-control")}}
+        {{aform.title.label}}
+        {{aform.title (class="form-control")}}
       </div> 
       <div class="form-group">
         {{aform.description.label}}
@@ -23,8 +22,16 @@
         {{aform.image (class="form-control")}}
       </div>
       <div class="form-group">
-        {{aform.currency.label}}
-        {{aform.currency (class="form-control")}}
+        {{aform.price.label}}
+        {{aform.price (class="form-control")}}
+      </div>
+      <div class="form-group">
+        {{aform.address.label}}
+        {{aform.address (class="form-control")}}
+      </div>
+      <div class="form-group">
+        {{aform.water.label}}
+        {{aform.water (class="form-control")}}
       </div>
       {{afrom.csrf_token}}
       <button type="submit" class="btn btn-primary">Submit</button>
