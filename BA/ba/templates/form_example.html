@@ -6,27 +6,34 @@
 <div class="container">
     <h2>Contact Form</h2>
     <!--update the action and the method with relevant information-->
-    <form method="post" action={{url_for('main.create')}}>
+    <form method="post" action={{url_for('main.create_item')}}>
       <!-- keeps the label and text in a group vertically stacked--> 
-      
-
+  
       <div class="form-group">
-        {{form.name.label}}
-        {{form.name (class="form-control")}}
+        {{aform.title.label}}
+        {{aform.title (class="form-control")}}
       </div> 
       <div class="form-group">
-        {{form.description.label}}
-        {{form.description (class="form-control")}}
+        {{aform.description.label}}
+        {{aform.description (class="form-control")}}
       </div>
       <div class="form-group">
-        {{form.image.label}}
-        {{form.image (class="form-control")}}
+        {{aform.image.label}}
+        {{aform.image (class="form-control")}}
       </div>
       <div class="form-group">
-        {{aform.currency.label}}
-        {{form.currency (class="form-control")}}
+        {{aform.price.label}}
+        {{aform.price (class="form-control")}}
       </div>
-      {{from.csrf_token}}
+      <div class="form-group">
+        {{aform.address.label}}
+        {{aform.address (class="form-control")}}
+      </div>
+      <div class="form-group">
+        {{aform.water.label}}
+        {{aform.water (class="form-control")}}
+      </div>
+      {{afrom.csrf_token}}
       <button type="submit" class="btn btn-primary">Submit</button>
    
     </form>
