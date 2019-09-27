@@ -82,5 +82,3 @@ def create_item():
     return redirect(url_for('main.index'))
 
 
-
-

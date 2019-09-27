@@ -27,7 +27,6 @@ class Item(db.Model):
     eletricity = db.Column(db.Boolean)
     gas = db.Column(db.Boolean)
     mobile = db.Column(db.Integer)
-   
     #user_id = db.relationship('User', backref='user')
     def __repr__(self): #string print method
         return "<Name: {}>".format(self.name)
@@ -37,6 +36,10 @@ class Bid(db.Model):
     __tablename__ = 'bid'
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime)
+    perDesc = db.Column(db.String(512))
+    lengthofstay = db.Column(db.String(255))
+
+
     #user_id = db.relationship('User', backref='user')
     #item_id = db.relationship('Item', backref='item')
 
