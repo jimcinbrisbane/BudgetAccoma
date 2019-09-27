@@ -52,7 +52,7 @@ def show(id):
   return render_template('u.html', destination=destination)
 
 @mainbp.route('/sharehouse')
-def sharehouse():
+def sharehousePage():
     tag_line='Budget Accomadation: Cheap Sharehouse For Broke You!'
     return render_template('content.html', tag_line=tag_line)
 
