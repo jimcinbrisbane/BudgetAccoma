@@ -27,7 +27,9 @@ mainbp = Blueprint('main',__name__)
 def index():
     tag_line='Budget Accomadation: Cheap Sharehouse For Broke You!'
 
-    return render_template('homepage.html', tag_line=tag_line)
+    return render_template('base.html', tag_line=tag_line)
+
+
 #@mainbp.route('/<id>') 
 #def show(id): 
   #destination = Destination.query.filter_by(id=id).first()  
@@ -43,10 +45,16 @@ def post():
     return render_template('index_reuse.html', tag_line=tag_line,
                     #form=form, form2=form2, 
                     aform=aform)
+
 @mainbp.route('/a/<id>') 
 def show(id): 
   destination = Item.query.filter_by(id=id).first()  
   return render_template('u.html', destination=destination)
+
+@mainbp.route('/sharehouse')
+def sharehouse():
+    tag_line='Budget Accomadation: Cheap Sharehouse For Broke You!'
+    return render_template('content.html', tag_line=tag_line)
 
 @mainbp.route('/create', methods = ['GET','POST'])
 def create_item():
