@@ -27,7 +27,7 @@ class itemForm(FlaskForm):
 
     title = StringField('Fancy Title', validators=[InputRequired()])
     description = StringField('Room Description', validators=[InputRequired()])
-    photo = FileField('image', validators=[FileRequired(),FileAllowed({ 'jpg', 'JPG', 'png', 'PNG'}, 'Images only!')])
+    image = FileField('image', validators=[FileRequired(),FileAllowed({ 'jpg', 'JPG', 'png', 'PNG'}, 'Images only!')])
    
     price = IntegerField('Price', validators=[InputRequired()])
     address = StringField('Address', validators=[InputRequired()])

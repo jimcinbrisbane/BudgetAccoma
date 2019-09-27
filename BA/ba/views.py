@@ -10,12 +10,12 @@ import os
 
 def check_upload_file(form):
           # get file data from form
-          fp = aform.image.data
+          fp = form.image.data
           filename= fp.filename
           # get the current path of the module file... store file relative to this path
           BASE_PATH= os.path.dirname(__file__)
           #uploadfilelocation – directory of this file/static/image
-          upload_path= os.path.join(BASE_PATH,'static/image', secure_filename(filename))
+          upload_path= os.path.join(BASE_PATH,'static/img', secure_filename(filename))
           # store relative path in DB as image location in HTML is relative
           db_upload_path= '/static/image/'+ secure_filename(filename)
           # save the file and return the dbupload path
@@ -53,6 +53,7 @@ def create_item():
   aform = itemForm()
   if aform.validate_on_submit():
     db_file_path=check_upload_file(aform)
+    print(db_file_path)
 
         # a simple function: doesnot   handleerrorsin filetypesand  filenot  beinguploaded
     
