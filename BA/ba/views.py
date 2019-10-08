@@ -8,6 +8,7 @@ from . import db
 from werkzeug.utils import secure_filename
 import os
 
+# the function to get the upload path so we can store it to the database
 def check_upload_file(form):
           # get file data from form
           fp = form.image.data
@@ -23,19 +24,14 @@ def check_upload_file(form):
           return db_upload_path
 mainbp = Blueprint('main',__name__)
 
+# homepage route
 @mainbp.route('/')
 def index():
     tag_line='Budget Accomadation: Cheap Sharehouse For Broke You!'
 
     return render_template('base.html', tag_line=tag_line)
 
-
-#@mainbp.route('/<id>') 
-#def show(id): 
-  #destination = Destination.query.filter_by(id=id).first()  
-  #cform = cokForm()
- # return render_template('user.html', destination=destination)
-
+#item form route
 @mainbp.route('/landlord')
 def post():
     tag_line="I'm the landlord"
@@ -46,11 +42,13 @@ def post():
                     #form=form, form2=form2, 
                     aform=aform)
 
-@mainbp.route('/<id>') 
-def show(id): 
-  info = Item.query.filter_by(id=id).first()  
-  return render_template('u.html', info=info)
+#testing
+#@mainbp.route('/<id>') 
+#def show(id): 
+#  info = Item.query.filter_by(id=id).first()  
+#  return render_template('u.html', info=info)
 
+#information page route
 @mainbp.route('/sharehouse/<id>')
 def sharehousePage(id):
     info = Item.query.filter_by(id=id).first()  
@@ -58,6 +56,7 @@ def sharehousePage(id):
     name = Item.query.filter_by(id=id).first()  
     return render_template('content.html', tag_line=tag_line, info=info)
 
+#fetch item form and insert it to database
 @mainbp.route('/create', methods = ['GET','POST'])
 def create_item():
   aform = itemForm()
@@ -70,7 +69,9 @@ def create_item():
     # if the form was successfully submitted
     # access the values in the form data
     print([aform.title.data,aform.description.data,aform.gas.data,aform.price.data,aform.water.data,aform.address.data,aform.gas.data,aform.mobile.data])
-    newitem = Item(id = datetime.datetime.now().isoformat(),
+    
+    #insert item into database
+    newitem = Item(id = datetime.datetime.now().isoformat(),#as you can see I used datetime as Primary Key
                 title=aform.title.data, 
                 description=aform.description.data,
                 image= db_file_path,

@@ -22,7 +22,7 @@ class LoginForm(FlaskForm):
     login = StringField('', validators=[InputRequired()])
     submit = SubmitField("Submit")
 
-#4
+# item form
 class itemForm(FlaskForm):
 
     title = StringField('Fancy Title', validators=[InputRequired()])

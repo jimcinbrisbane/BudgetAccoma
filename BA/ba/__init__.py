@@ -2,7 +2,7 @@ from flask import Flask,render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 
-#database
+#init database
 db=SQLAlchemy()
 
 
@@ -16,9 +16,6 @@ def create_app():
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     #connectdb
     app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///travel123.sqlite'
-    #image
-    #UPLOAD_FOLDER= '/static/image'
-    #app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     #initialize db with flask app
     db.init_app(app)
     # error handler
