@@ -17,7 +17,7 @@ def check_upload_file(form):
           #uploadfilelocation – directory of this file/static/image
           upload_path= os.path.join(BASE_PATH,'static/img', secure_filename(filename))
           # store relative path in DB as image location in HTML is relative
-          db_upload_path= '/static/image/'+ secure_filename(filename)
+          db_upload_path= '/static/img/'+ secure_filename(filename)
           # save the file and return the dbupload path
           fp.save(upload_path)
           return db_upload_path
@@ -46,15 +46,17 @@ def post():
                     #form=form, form2=form2, 
                     aform=aform)
 
-@mainbp.route('/a/<id>') 
+@mainbp.route('/<id>') 
 def show(id): 
-  destination = Item.query.filter_by(id=id).first()  
-  return render_template('u.html', destination=destination)
+  info = Item.query.filter_by(id=id).first()  
+  return render_template('u.html', info=info)
 
-@mainbp.route('/sharehouse')
-def sharehousePage():
+@mainbp.route('/sharehouse/<id>')
+def sharehousePage(id):
+    info = Item.query.filter_by(id=id).first()  
     tag_line='Budget Accomadation: Cheap Sharehouse For Broke You!'
-    return render_template('content.html', tag_line=tag_line)
+    name = Item.query.filter_by(id=id).first()  
+    return render_template('content.html', tag_line=tag_line, info=info)
 
 @mainbp.route('/create', methods = ['GET','POST'])
 def create_item():

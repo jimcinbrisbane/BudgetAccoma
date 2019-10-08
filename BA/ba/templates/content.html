@@ -66,6 +66,9 @@
                                        
                                         <li class="nav-item">
                                                 <a class="nav-item nav-link text-light active" href="./lanlord.html"><i class="fas fa-igloo" style="font-size: 150%"></i> Login</a>
+    
+                                        </li>
+                                        <li class="nav-item">
                                                 <a class="nav-item nav-link text-light active" href="./form.html">I'm a Landlord</a>
     
                                         </li>
@@ -79,21 +82,24 @@
                     <p> </p>
                     <div class="row">
                             <div style="background-color:transparent;">                    
-                                <img style="width: 90%"src="../static/img/melbourne.jpg" class="rounded border border-secondary" alt="Cinque Terre" style="margin: 1%; margin-right:80%;"> 
-                            </div>
-                            <div style="background-color:rgba(255,255,255,0.7); margin-left: 10px; margin-top: 10px; color:black; width: 900px">
+                                    <img style="width: 800px; margin-left:2%;"src="..{{info.image}}" class="rounded border border-secondary" alt="Cinque Terre" style="margin: 1%; margin-right:80%;"> 
+                                </div>
+                          
+                            <div style="background-color:rgba(255,255,255,0.7); margin-left: 2%; margin-top: 10px; color:black; width: 800px">
 
-                                <p> </p>
+                                
 
-                                <h2>Massive Sharehouse in Logan City</h2>
+                                <h2>{{info.title}}</h2>
                                 <div style="text-align: left; margin: 5%">
-                                <h4><i class="fas fa-user"></i> 4 people <br /> 128 Railway Street
+                                <h4><i class="fas fa-user"></i> 4 people <br /> {{info.address}}
+
                                     <br />
                                     <i class="fas fa-shower"></i> <i class="fas fa-fire"></i> <i class="fas fa-wifi"></i> </p></h4>
                                 
                                     <div class="row">
                                             <div class="col-sm-7 col-md-8 col-lg-9">
-                                                <p class="post-body" style="max-height: none;">I am looking for students (girls only) that can replace my room at Iglu Accommodations, Kelvin Grove. I have a one year contract that will end in the beginning of July 2020. I wish to move out in the middle of January. I am very pleased with Iglu, but I want to try something new that is closer to Gardens Point, where I study. The one year contract implies cheaper rent for the one replacing me, then what it would have been for a 6 month contract. You can also extend the contract if you wish to stay longer. If you want to know more about Iglu Kelvin Grove, check out their website.</p>
+                                                <p class="post-body" style="max-height: none;">{{info.description}}
+                                                    </p>
                                                 <hr>
                                                 <p></p>
                                                 <p></p>
@@ -103,17 +109,8 @@
                                             <div class="col-sm-5 col-md-4 col-lg-3">
                                                 <div class="ad-criteria clearfix">
                                                             <!--Features are changed in the view js files to make the structure slightly different-->
-                                                            <div class="criteria-group">
-                                                                <h5>Features</h5>
-                                                                <ul>
-                                                                    <li>Shared Bathroom</li>
-                                                                    <li>Own Room</li>
-                                                                    <li>Shared Living</li>
-                                                                    <li>Shared Kitchen</li>
-                                                                </ul>
-                                                            </div>
                                                             <h6>Mobile Number</h6>
-                                                             0483222999
+                                                            {{info.mobile}}
 
                                                            
                                                 </div>
