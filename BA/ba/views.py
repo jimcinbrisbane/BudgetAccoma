@@ -86,6 +86,7 @@ def create_item():
                 )
     # add the object to the db session
     db.session.add(newitem)
+    
     # commit to the database
     db.session.commit()
     #flash('Successfully created new travel destination', 'success')
