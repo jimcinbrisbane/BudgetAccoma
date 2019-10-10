@@ -1,7 +1,8 @@
-# with sql    
+# sql database sigma   
 from . import db
 from datetime import datetime
 
+#user sigma
 class User(db.Model):
     __tablename__='user' # good practice to specify table name
     id = db.Column(db.Integer, primary_key=True)
@@ -14,6 +15,7 @@ class User(db.Model):
         return "<name: {}, emailid: {}>".format(self.name, self.emailid)
     # relation to call user.comments and comment.created_by
 
+#item sigma
 class Item(db.Model):
     __tablename__ = 'item'
     id = db.Column(db.String, primary_key=True)
@@ -31,7 +33,7 @@ class Item(db.Model):
     def __repr__(self): #string print method
         return "<Name: {}>".format(self.name)
 
-
+#bid sigma
 class Bid(db.Model):
     __tablename__ = 'bid'
     id = db.Column(db.Integer, primary_key=True)
