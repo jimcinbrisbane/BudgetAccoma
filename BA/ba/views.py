@@ -114,7 +114,22 @@ def register():
         db.session.add(user1)
         db.session.commit()
         return redirect(url_for('main.index'))
-#def login():
-   # login_form=LoginForm()
-   # error=None
+def login():
+    login_form=LoginForm()
+    error=None
+    if(login_form.validate_on_submit()):
+        username =login_form.user_name.data
+        pass_word =login_form.pass_word.data
+        u1 =User.query.filter_by(name = user_name).first()
+
+        if u1 is None:
+            error='Incorrect Username'
+        elif not check_password_hash(u1.check_password_hash,password):
+            error='Incorrect Password'
+        if error is None:
+            return redirect(url_for('main.index'))
+        else:
+            print(error)
+            flash(error)
+    return render_template('',login_form=login_form,heading='Login')
 
