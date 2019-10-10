@@ -11,6 +11,8 @@ import os
 # the function to get the upload path so we can store it to the database
 def check_upload_file(form):
           # get file data from form
+
+          
           fp = form.image.data
           filename= fp.filename
           # get the current path of the module file... store file relative to this path
