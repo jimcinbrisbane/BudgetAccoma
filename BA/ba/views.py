@@ -7,12 +7,13 @@ import datetime
 from . import db
 from werkzeug.utils import secure_filename
 import os
+from . import create_app
 
 # the function to get the upload path so we can store it to the database
 def check_upload_file(form):
           # get file data from form
 
-          
+
           fp = form.image.data
           filename= fp.filename
           # get the current path of the module file... store file relative to this path
@@ -93,5 +94,27 @@ def create_item():
     #flash('Successfully created new travel destination', 'success')
     print('Successfully created new room info', 'success')
     return redirect(url_for('main.index'))
+@mainbp.route('/reg')
+def reg():
+    registerform = RegestierForm()
+    return render_template('register.html',registerform = registerform)
+@mainbp.route('/register', methods = ['POST'])
+def register():
+    registerform = RegestierForm()
+    if registerform.validate_on_submit():
+        print('Register Form Submitted')
+        #get username,password and email from the form
+        username = registerform.user_name.data
+        pass_word = registerform.password.data
+        email = registerform.email.data
 
+        #create password hash
+        #password_hash = generate_password_hash(pass_word)
+        user1 = User(name=username,emailid=email,password_hash=pass_word)
+        db.session.add(user1)
+        db.session.commit()
+        return redirect(url_for('main.index'))
+#def login():
+   # login_form=LoginForm()
+   # error=None
 
