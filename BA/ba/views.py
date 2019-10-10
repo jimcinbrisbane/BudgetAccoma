@@ -36,6 +36,7 @@ def index():
 
 #item form route
 @mainbp.route('/landlord')
+@login_required
 def post():
     tag_line="I'm the landlord"
     
@@ -114,7 +115,12 @@ def register():
         db.session.add(user1)
         db.session.commit()
         return redirect(url_for('main.index'))
-def login():
+@mainbp.route('/login')
+def log():
+    login_form = LoginForm()
+    return render_template('login.html',login_form = login_form)
+@mainbp.route('/log', methods = ['GET','POST'])
+def log():
     login_form=LoginForm()
     error=None
     if(login_form.validate_on_submit()):
