@@ -20,7 +20,7 @@ class RegestierForm(FlaskForm):
 
 # place login
 class LoginForm(FlaskForm):
-    user = StringField('User', validators=[InputRequired()] )
+    user = StringField('Username', validators=[InputRequired()] )
     login = StringField('Password', validators=[InputRequired()])
     submit = SubmitField("Submit")
 
