@@ -31,7 +31,7 @@ class Item(db.Model):
     mobile = db.Column(db.Integer)
     #user_id = db.relationship('User', backref='user')
     def __repr__(self): #string print method
-        return "<Name: {}>".format(self.name)
+        return "<id: {}, image: {}>".format(self.id, self.image)
 
 #bid sigma
 class Bid(db.Model):

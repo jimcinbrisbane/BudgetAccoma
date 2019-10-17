@@ -31,8 +31,9 @@ mainbp = Blueprint('main',__name__)
 @mainbp.route('/')
 def index():
     tag_line='Budget Accomadation: Cheap Sharehouse For Broke You!'
+    room = Item.query.all()
 
-    return render_template('base.html', tag_line=tag_line)
+    return render_template('base.html', room = room, tag_line=tag_line)
 
 #item form route
 @mainbp.route('/landlord')
@@ -138,4 +139,7 @@ def log():
             print(error)
             flash(error)
     return render_template('',login_form=login_form,heading='Login')
+
+
+
 
