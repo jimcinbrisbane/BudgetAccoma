@@ -31,7 +31,7 @@ mainbp = Blueprint('main',__name__)
 @mainbp.route('/')
 def index():
     tag_line='Budget Accomadation: Cheap Sharehouse For Broke You!'
-    room = Item.query.limit(3).all()
+    room = Item.query.order_by(Item.id.desc()).limit(3).all()
 
     return render_template('base.html', room = room, tag_line=tag_line)
 
