@@ -91,53 +91,27 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <h4 style="margin: 3%;">Our Latest Picks </h4> {%for item in room%}
-              <div class="d-flex justify-content"">{{room}}
-                <div class="card" style="width: 25rem;margin: 12px;">
-                      <img src="..{{room.image}}" class="card-img-top" alt="...">
-                      <div class="card-body">
-                        <h5 class="card-title">$200 Alderley</h5>
-                        <p class="card-text"><i class="fas fa-user"></i> 4 people <br /> 128 Railway Street
-                          <br />
-                          <i class="fas fa-shower"></i> <i class="fas fa-fire"></i> <i class="fas fa-wifi"></i> </p>
-                        <a href="/sharehouse" class="btn btn-primary">Check it out</a>
-      
-      
-                      </div>
-              
-              </h4>
-          </div>
-          
-              </div>
-              <div class="card" style="width: 25rem;margin: 12px;">
-                    <img src="../static/img/02.jpg" class="card-img-top" alt="...">
+        <h4 style="margin: 3%;">Our Latest Picks </h4> 
 
-                    <div class="card-body">
-                      <h5 class="card-title">$180 Alexandra Hills</h5>
-                      <p class="card-text"><i class="fas fa-user"></i> 4 people <br /> 128 Railway Street
-                        <br />
-                        <i class="fas fa-shower"></i> <i class="fas fa-fire"></i> <i class="fas fa-wifi"></i> </p>
-                      <a href="/sharehouse" class="btn btn-primary">Check it out</a>
-
+        <div class="row" style="margin: 8px;">
+            {%for item in room%}
+            <div class="row" style="padding: 15px;">
+                  <div class="d-flex justify-content"">
+                    <div class="card" style="width: 25rem;margin: 12px;">
+                          <img src="..{{item.image}}" class="card-img-top" alt="...">
+                          <div class="card-body">
+                            <h5 class="card-title">{{item.price}}</h5>
+                            <p class="card-text"><i class="fas fa-user"></i> 4 people <br /> {{item.address}}
+                              <br />
+                              <i class="fas fa-shower"></i> <i class="fas fa-fire"></i> <i class="fas fa-wifi"></i> </p>
+                            <a href="/sharehouse/{{item.id}}" class="btn btn-primary">Check it out</a>
+                          </div>
                     </div>
                   </div>
-                  <div class="card" style="width: 25rem;margin: 12px;">
-                        <img src="../static/img/02.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">$140 Kangaroo Point</h5>
-                          <p class="card-text"><i class="fas fa-user"></i> 4 people <br /> 128 Railway Street
-                            <br />
-                            <i class="fas fa-shower"></i> <i class="fas fa-fire"></i> <i class="fas fa-wifi"></i> </p>
-                          <a href="/sharehouse" class="btn btn-primary">Check it out</a>
-
-
-                        </div>
-                      </div>
-                     </div>
+             </div>
+             {%endfor%}
     </header>
 
-    {%endfor%}
     {% block content %}
 
 
