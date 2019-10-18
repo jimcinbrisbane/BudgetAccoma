@@ -3,6 +3,7 @@ from .models import User,Item,Bid
 from .forms import RegestierForm
 from .forms import LoginForm
 from .forms import itemForm
+from .forms import searchForm
 import datetime
 from . import db
 from werkzeug.utils import secure_filename
@@ -25,15 +26,30 @@ def check_upload_file(form):
           # save the file and return the dbupload path
           fp.save(upload_path)
           return db_upload_path
+
+
 mainbp = Blueprint('main',__name__)
+@mainbp.route('/Search', methods = ['GET'])
+def Search():
+    search_form=searchForm()
+    if (search_form.validate_on_submit()):
+        print('Search Form Submitted')
+        #get username,password and email from the form
+        Price = search_form.price.data
+        Location = search_form.location.data
+        info = Item.query.filter_by(price=Price,location=Location).first()  
+        return redirect(url_for('main.index'))
+
+
 
 # homepage route
 @mainbp.route('/')
 def index():
+    search_form = searchForm()
     tag_line='Budget Accomadation: Cheap Sharehouse For Broke You!'
     room = Item.query.order_by(Item.id.desc()).limit(3).all()
 
-    return render_template('base.html', room = room, tag_line=tag_line)
+    return render_template('base.html', room = room, search_form=search_form,  tag_line=tag_line)
 
 #item form route
 @mainbp.route('/landlord')
@@ -139,7 +155,4 @@ def log():
             print(error)
             flash(error)
     return render_template('',login_form=login_form,heading='Login')
-
-
-
 

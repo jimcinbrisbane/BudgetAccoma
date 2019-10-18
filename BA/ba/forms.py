@@ -40,3 +40,8 @@ class itemForm(FlaskForm):
     gas = BooleanField('Gas Included?')
 
     submit= SubmitField("Create")
+
+class searchForm(FlaskForm):
+    price=StringField('Price',validators=[InputRequired])
+    location=StringField('Location',validators=[InputRequired])
+    submit = SubmitField('Search')
