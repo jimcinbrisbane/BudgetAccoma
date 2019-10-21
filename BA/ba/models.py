@@ -29,7 +29,7 @@ class Item(db.Model):
     eletricity = db.Column(db.Boolean)
     gas = db.Column(db.Boolean)
     mobile = db.Column(db.Integer)
-    #user_id = db.relationship('User', backref='user')
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     def __repr__(self): #string print method
         return "<id: {}, image: {}, title: {}, description: {}, price: {}, address: {}>".format(self.id, self.image, self.title, self.description, self.price, self.address)
 
@@ -40,10 +40,5 @@ class Bid(db.Model):
     date = db.Column(db.DateTime)
     perDesc = db.Column(db.String(512))
     lengthofstay = db.Column(db.String(255))
-    #user_id = db.relationship('User', backref='user')
-    #item_id = db.relationship('Item', backref='item')
-
-
-
-
-
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    item_id = db.Column(db.String, db.ForeignKey('item.id'))

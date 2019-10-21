@@ -89,8 +89,8 @@ def create_item():
                 wifi = aform.wifi.data,
                 eletricity = aform.eletricity.data,
                 gas = aform.gas.data,
-                mobile = aform.mobile.data
-                #user_id = "working on it",
+                mobile = aform.mobile.data,
+                user_id = 1,
                 )
     # add the object to the db session
     db.session.add(newitem)
