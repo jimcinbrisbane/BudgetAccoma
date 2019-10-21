@@ -1,4 +1,4 @@
-{% extends "a.html" %}
+{% extends "baseTemplate.html" %}
 
 {% block content %}
 <p>this works</p>
@@ -8,8 +8,7 @@
     <!--update the action and the method with relevant information-->
     <form method="post" action={{url_for('main.create')}}>
       <!-- keeps the label and text in a group vertically stacked--> 
-      
-
+    
       <div class="form-group">
         {{aform.name.label}}
         {{aform.name (class="form-control")}}

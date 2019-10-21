@@ -1,9 +1,6 @@
 from flask import Blueprint,render_template, redirect, url_for, request
 from .models import User,Item,Bid
-from .forms import RegestierForm
-from .forms import LoginForm
-from .forms import itemForm
-from .forms import searchForm
+from .forms import RegestierForm, LoginForm, itemForm, searchForm
 import datetime
 from . import db
 from werkzeug.utils import secure_filename
@@ -27,11 +24,10 @@ def check_upload_file(form):
           fp.save(upload_path)
           return db_upload_path
 
-
 mainbp = Blueprint('main',__name__)
-@mainbp.route('/Search', methods = ['GET'])
-def Search():
-    search_form=searchForm()
+@mainbp.route('/search', methods = ['GET'])
+def search():
+    search_form = searchForm()
     if (search_form.validate_on_submit()):
         print('Search Form Submitted')
         #get username,password and email from the form
@@ -42,6 +38,8 @@ def Search():
 
 
 
+mainbp = Blueprint('main',__name__)
+
 # homepage route
 @mainbp.route('/')
 def index():
@@ -49,7 +47,7 @@ def index():
     tag_line='Budget Accomadation: Cheap Sharehouse For Broke You!'
     room = Item.query.order_by(Item.id.desc()).limit(3).all()
 
-    return render_template('base.html', room = room, search_form=search_form,  tag_line=tag_line)
+    return render_template('homepage.html', search_form = search_form, room = room, tag_line=tag_line)
 
 #item form route
 @mainbp.route('/landlord')
@@ -62,19 +60,14 @@ def post():
                     #form=form, form2=form2, 
                     aform=aform)
 
-#testing
-#@mainbp.route('/<id>') 
-#def show(id): 
-#  info = Item.query.filter_by(id=id).first()  
-#  return render_template('u.html', info=info)
 
-#information page route
+#information page/room information route
 @mainbp.route('/sharehouse/<id>')
 def sharehousePage(id):
     info = Item.query.filter_by(id=id).first()  
     tag_line='Budget Accomadation: Cheap Sharehouse For Broke You!'
     name = Item.query.filter_by(id=id).first()  
-    return render_template('content.html', tag_line=tag_line, info=info)
+    return render_template('roomInfo.html', tag_line=tag_line, info=info)
 
 #fetch item form and insert it to database
 @mainbp.route('/create', methods = ['GET','POST'])
@@ -84,7 +77,7 @@ def create_item():
     db_file_path=check_upload_file(aform)
     print(db_file_path)
 
-        # a simple function: doesnot   handleerrorsin filetypesand  filenot  beinguploaded
+        # a simple function: doesnot handle errors in file types and file not being uploaded
     
     # if the form was successfully submitted
     # access the values in the form data
@@ -112,10 +105,12 @@ def create_item():
     #flash('Successfully created new travel destination', 'success')
     print('Successfully created new room info', 'success')
     return redirect(url_for('main.index'))
+
 @mainbp.route('/reg')
 def reg():
     registerform = RegestierForm()
     return render_template('register.html',registerform = registerform)
+
 @mainbp.route('/register', methods = ['POST'])
 def register():
     registerform = RegestierForm()
@@ -132,27 +127,12 @@ def register():
         db.session.add(user1)
         db.session.commit()
         return redirect(url_for('main.index'))
+
+#routing for login
 @mainbp.route('/login')
 def login():
     login_form = LoginForm()
-    return render_template('login.html',login_form = login_form)
-@mainbp.route('/log', methods = ['GET','POST'])
-def log():
-    login_form=LoginForm()
-    error=None
-    if(login_form.validate_on_submit()):
-        username =login_form.user_name.data
-        pass_word =login_form.pass_word.data
-        u1 =User.query.filter_by(name = user_name).first()
+    return render_template('login.html', login_form = login_form)
 
-        if u1 is None:
-            error='Incorrect Username'
-        elif not check_password_hash(u1.check_password_hash,password):
-            error='Incorrect Password'
-        if error is None:
-            return redirect(url_for('main.index'))
-        else:
-            print(error)
-            flash(error)
-    return render_template('',login_form=login_form,heading='Login')
+
 
