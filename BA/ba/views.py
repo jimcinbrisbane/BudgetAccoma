@@ -56,6 +56,14 @@ def post():
                     aform=aform)
 
 
+#item form route
+@mainbp.route('/landlordlist')
+def postitems():
+    tag_line="I'm the landlord"
+    room = Item.query.filter(Item.user_id == '1').order_by(Item.id.desc()).all()
+    search_form = searchForm()
+    return render_template('landlordlist.html', search_form = search_form, room = room, tag_line=tag_line)
+
 #information page/room information route
 @mainbp.route('/sharehouse/<id>')
 def sharehousePage(id):
