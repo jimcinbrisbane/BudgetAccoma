@@ -29,15 +29,10 @@ def search():
     if (search_form.validate_on_submit()):
         print('Search Form Submitted')
         #get username,password and email from the form
-        Price = search_form.price.data
-        Location = search_form.location.data
-        info = Item.query.filter_by(price=Price,location=Location).first()  
+        price = search_form.price.data
+        location = search_form.location.data
+        #info = Item.query.filter_by(price=price,location=location).first()  
         return redirect(url_for('main.index'))
-
-
-
-mainbp = Blueprint('main',__name__)
-
 # homepage route
 @mainbp.route('/')
 def index():
