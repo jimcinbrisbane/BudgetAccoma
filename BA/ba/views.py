@@ -8,10 +8,58 @@ from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 from . import create_app
-from . import auth
-mainbp = Blueprint('main',__name__)
 
-# the function to get the upload path so we can store it to the database
+
+#############################################
+#               R O U T I N G               #                
+#############################################
+
+mainbp = Blueprint('main',__name__)
+@mainbp.route('/search', methods = ['GET'])
+def search():
+    search_form = searchForm()
+    if (search_form.validate_on_submit()):
+        print('Search Form Submitted')
+        #get username,password and email from the form
+        price = search_form.price.data
+        location = search_form.location.data
+        #info = Item.query.filter_by(price=price,location=location).first()  
+        return redirect(url_for('main.index'))
+
+############################################
+# homepage route
+@mainbp.route('/')
+def index():
+    search_form = searchForm()
+    tag_line='Budget Accomadation: Cheap Sharehouse For Broke You!'
+    room = Item.query.order_by(Item.id.desc()).limit(3).all()
+    return render_template('homepage.html', search_form = search_form, room = room, tag_line=tag_line)
+
+############################################
+#item form route
+@mainbp.route('/landlord')
+def post():
+    tag_line="I'm the landlord"
+    
+    aform = itemForm()
+
+    return render_template('index_reuse.html', tag_line=tag_line,
+                    #form=form, form2=form2, 
+                    aform=aform)
+
+############################################
+#information page/room information route
+@mainbp.route('/sharehouse/<id>')
+def sharehousePage(id):
+    info = Item.query.filter_by(id=id).first()  
+    tag_line='Budget Accomadation: Cheap Sharehouse For Broke You!'
+    name = Item.query.filter_by(id=id).first()  
+    return render_template('roomInfo.html', tag_line=tag_line, info=info)
+
+#############################################
+#        D A T A B A S E - P A T H          #                
+#############################################
+
 def check_upload_file(form):
           # get file data from form
           fp = form.image.data
@@ -26,57 +74,20 @@ def check_upload_file(form):
           fp.save(upload_path)
           return db_upload_path
 
-@mainbp.route('/search', methods = ['GET'])
-def search():
-    search_form = searchForm()
-    if (search_form.validate_on_submit()):
-        print('Search Form Submitted')
-        #get username,password and email from the form
-        price = search_form.price.data
-        location = search_form.location.data
-        #info = Item.query.filter_by(price=price,location=location).first()  
-        return redirect(url_for('main.index'))
-# homepage route
-@mainbp.route('/')
-def index():
-    search_form = searchForm()
-    tag_line='Budget Accomadation: Cheap Sharehouse For Broke You!'
-    room = Item.query.order_by(Item.id.desc()).limit(3).all()
-
-    return render_template('homepage.html', search_form = search_form, room = room, tag_line=tag_line)
-
-#item form route
-@mainbp.route('/landlord')
-def post():
-    tag_line="I'm the landlord"
-    
-    aform = itemForm()
-
-    return render_template('index_reuse.html', tag_line=tag_line,
-                    #form=form, form2=form2, 
-                    aform=aform)
-
-
-#information page/room information route
-@mainbp.route('/sharehouse/<id>')
-def sharehousePage(id):
-    info = Item.query.filter_by(id=id).first()  
-    tag_line='Budget Accomadation: Cheap Sharehouse For Broke You!'
-    name = Item.query.filter_by(id=id).first()  
-    return render_template('roomInfo.html', tag_line=tag_line, info=info)
-
+#############################################
+#           C R E A T E - I T E M           #                
+#############################################
 #fetch item form and insert it to database
+
 @mainbp.route('/create', methods = ['GET','POST'])
 def create_item():
   aform = itemForm()
   if aform.validate_on_submit():
     db_file_path=check_upload_file(aform)
     print(db_file_path)
-
-        # a simple function: doesnot handle errors in file types and file not being uploaded
+    # a simple function: doesnot handle errors in file types and file not being uploaded
     
-    # if the form was successfully submitted
-    # access the values in the form data
+    # if the form was successfully submitted, access the values in the form data
     print([aform.title.data,aform.description.data,aform.gas.data,aform.price.data,aform.water.data,aform.address.data,aform.gas.data,aform.mobile.data])
     
     #insert item into database
@@ -93,14 +104,20 @@ def create_item():
                 mobile = aform.mobile.data
                 #user_id = "working on it",
                 )
-    # add the object to the db session
+
+    #add the object to the db session
     db.session.add(newitem)
     
-    # commit to the database
+    #commit to the database
     db.session.commit()
     #flash('Successfully created new travel destination', 'success')
     print('Successfully created new room info', 'success')
     return redirect(url_for('main.index'))
+
+
+#############################################
+#           R E G I S T R A T I O N         #                
+#############################################
 
 @mainbp.route('/reg')
 def reg():
@@ -128,12 +145,25 @@ def register():
         #return to main page
         return redirect(url_for('main.index'))
 
+#############################################
+#                 L O G I N                 #                
+#############################################
+#initialize login management
+login_manager = LoginManager()
+
+#create name of the login function that lets users login
+login_manager.login_view ='auth.login'
+
+#create a user load in function that goes by userID
+@login_manager.user_loader
+
 #routing for login
 @mainbp.route('/login')
 def login():
     login_form = LoginForm()
     return render_template('login.html', login_form = login_form)
 
+#this is the login function
 @mainbp.route('/log', methods = ['GET','POST'])
 def log():
     login_form=LoginForm()
@@ -148,9 +178,11 @@ def log():
         elif not check_password_hash(u1.check_password_hash,password):
             error='Incorrect Password'
         if error is None:
+            login_user(u1)
             return redirect(url_for('main.index'))
         else:
             print(error)
             flash(error)
 
-    return render_template('',login_form=login_form, heading='Login')
+    return redirect(url_for('main.index'))
+
