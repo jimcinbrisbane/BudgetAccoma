@@ -23,7 +23,7 @@ def create_app():
     def not_found(e):
        return render_template('404.html'),404
    # get bootstrap init
-    boostrap = Bootstrap(app)
+    boostrap = Bootstrap(app)p
     #initialize the login manager
     login_manager = LoginManager()
     
