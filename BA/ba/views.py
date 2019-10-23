@@ -53,7 +53,25 @@ def post():
                     #form=form, form2=form2, 
                     aform=aform)
 
-############################################
+
+#item form route
+@mainbp.route('/landlordlist')
+def postitems():
+    tag_line="I'm the landlord"
+    room = Item.query.filter(Item.user_id == '1').order_by(Item.id.desc()).all()
+    search_form = searchForm()
+    return render_template('landlordlist.html', search_form = search_form, room = room, tag_line=tag_line)
+
+#information page/room information route
+@mainbp.route('/landlorditem/<id>')
+def landlorditem(id):
+    info = Item.query.filter_by(id=id).first()  
+    tag_line='Budget Accomadation: Cheap Sharehouse For Broke You!'
+    aform = itemForm(obj=info)
+    name = Item.query.filter_by(id=id).first()  
+    return render_template('landlorditem.html', aform=aform, tag_line=tag_line, info=info)
+
+
 #information page/room information route
 @mainbp.route('/sharehouse/<id>')
 def sharehousePage(id):
