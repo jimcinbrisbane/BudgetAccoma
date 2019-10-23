@@ -1,5 +1,9 @@
 from flask import Blueprint,render_template, redirect, url_for, request
+<<<<<<< HEAD
 from flask_login import UserMixin, LoginManager
+=======
+from flask_login import UserMixin, login_manager, LoginManager
+>>>>>>> 042d0b78a12ecfb125ed4bab3756c132b2ed73aa
 from .models import User,Item,Bid
 from .forms import RegestierForm, LoginForm, itemForm, searchForm
 import datetime
@@ -172,18 +176,19 @@ def log():
     if(login_form.validate_on_submit()):
         username = login_form.user_name.data
         pass_word = login_form.pass_word.data
-        u1 = User.query.filter_by(name = user_name).first()
+        u1 = User.query.filter_by(name = username).first()
 
         if u1 is None:
             error='Incorrect Username'
-        elif not check_password_hash(u1.check_password_hash,password):
+        elif not check_password_hash(u1.check_password_hash,pass_word):
             error='Incorrect Password'
         if error is None:
             login_user(u1)
             return redirect(url_for('main.index'))
         else:
             print(error)
-            flash(error)
+           #flash(error)
+           #create a login failed page
 
-    return redirect(url_for('main.index'))
+   # return redirect(url_for('main.index'))
 
