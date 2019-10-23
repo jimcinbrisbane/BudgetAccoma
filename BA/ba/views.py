@@ -1,9 +1,5 @@
-from flask import Blueprint,render_template, redirect, url_for, request
-<<<<<<< HEAD
-from flask_login import UserMixin, LoginManager
-=======
-from flask_login import UserMixin, login_manager, LoginManager
->>>>>>> 042d0b78a12ecfb125ed4bab3756c132b2ed73aa
+from flask import Blueprint,render_template, redirect, url_for, request, flash
+from flask_login import LoginManager,login_user,current_user,logout_user, login_required
 from .models import User,Item,Bid
 from .forms import RegestierForm, LoginForm, itemForm, searchForm
 import datetime
@@ -44,6 +40,11 @@ def index():
 #item form route
 @mainbp.route('/landlord')
 def post():
+    if current_user.is_anonymous:
+        return redirect('/login')
+    else:
+        print(current_user)
+
     tag_line="I'm the landlord"
     
     aform = itemForm()
@@ -161,6 +162,8 @@ login_manager.login_view ='auth.login'
 
 #create a user load in function that goes by userID
 @login_manager.user_loader
+def load_user(user_id):
+    return User.get(u1)
 
 #routing for login
 @mainbp.route('/login')
@@ -180,15 +183,31 @@ def log():
 
         if u1 is None:
             error='Incorrect Username'
-        elif not check_password_hash(u1.check_password_hash,pass_word):
+            flash(error)
+            print(error)
+        elif not check_password_hash(u1.password_hash,pass_word):
             error='Incorrect Password'
+            flash(error)
+            print(error)
         if error is None:
+            print(u1)
             login_user(u1)
+            print(u1)
+            flash("session failed, try again")
             return redirect(url_for('main.index'))
         else:
+            return redirect(url_for('main.login'))
             print(error)
-           #flash(error)
            #create a login failed page
 
    # return redirect(url_for('main.index'))
 
+@mainbp.route("/logout")
+def logout():
+    if current_user.is_anonymous:
+        return redirect('/login')
+    else:
+        print(current_user)
+
+    logout_user()
+    return redirect()
