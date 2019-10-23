@@ -29,7 +29,7 @@ def create_app():
     
     #set the name of the login function that lets user login
     # in our case it is auth.login (blueprintname.viewfunction name)
-    login_manager.login_view='auth.login'
+    login_manager.login_view='views.login'
     login_manager.init_app(app)
 
     #create a user loader function takes userid and returns User
@@ -40,6 +40,8 @@ def create_app():
     # blue print
     from .views import mainbp
     app.register_blueprint(mainbp)
+
+    
 
     return app
 

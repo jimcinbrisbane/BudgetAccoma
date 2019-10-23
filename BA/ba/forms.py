@@ -16,8 +16,6 @@ class RegestierForm(FlaskForm):
     submit = SubmitField("Submit")
 
 
-
-
 # login form
 class LoginForm(FlaskForm):
     user_name = StringField('Username', validators=[InputRequired()] )
@@ -41,6 +39,7 @@ class itemForm(FlaskForm):
 
     submit= SubmitField("Create")
 
+# Search form
 class searchForm(FlaskForm):
     price=StringField('Price',validators=[InputRequired])
     location=StringField('Location',validators=[InputRequired])
