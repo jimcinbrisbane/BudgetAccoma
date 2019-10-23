@@ -23,7 +23,7 @@ class Item(db.Model, UserMixin):
     title = db.Column(db.String(32))
     description = db.Column(db.String(255))
     image = db.Column(db.String(32))
-    price = db.Column(db.String(10))
+    price = db.Column(db.Integer)
     address = db.Column(db.String(255))
     water = db.Column(db.Boolean)
     wifi = db.Column(db.Boolean)

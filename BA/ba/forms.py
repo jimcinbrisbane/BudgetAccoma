@@ -41,6 +41,6 @@ class itemForm(FlaskForm):
 
 # Search form
 class searchForm(FlaskForm):
-    price=StringField('Price',validators=[InputRequired])
-    location=StringField('Location',validators=[InputRequired])
+    price=StringField('Price',validators=[InputRequired()])
+    location=StringField('Location',validators=[InputRequired()])
     submit = SubmitField('Search')

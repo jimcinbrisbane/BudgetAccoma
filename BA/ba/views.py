@@ -16,17 +16,26 @@ from . import create_app
 #############################################
 
 mainbp = Blueprint('main',__name__)
-@mainbp.route('/search', methods = ['GET'])
+@mainbp.route('/search', methods = ['POST'])
 def search():
     search_form = searchForm()
     if (search_form.validate_on_submit()):
         print('Search Form Submitted')
-        #get username,password and email from the form
         price = search_form.price.data
+        price = int(price)
+        price = price + 5
+        print(price)
         location = search_form.location.data
-        #info = Item.query.filter_by(price=price,location=location).first()  
-        return redirect(url_for('main.index'))
-
+        search = "%{}%".format(location)
+        room = Item.query.filter(price <= price,Item.address.like(search)).all()
+        print(room)
+        #if price and location is not None:
+         #   info = Item.message.match("%"+ location +"%").all()  
+        #elif price is None:
+          #  info = Item.query.filter_by(Item.message.match("%"+ location +"%")).all() 
+        #elif location is None:
+         #   info = Item.query.filter_by(price<=int(price)).all() 
+        return render_template('landlordlist.html', room = room)
 ############################################
 # homepage route
 @mainbp.route('/')
@@ -34,7 +43,7 @@ def index():
     search_form = searchForm()
     tag_line='Budget Accomadation: Cheap Sharehouse For Broke You!'
     room = Item.query.order_by(Item.id.desc()).limit(3).all()
-    return render_template('homepage.html', search_form = search_form, room = room, tag_line=tag_line)
+    return render_template('homepage.html', room = room, search_form = search_form, tag_line=tag_line)
 
 ############################################
 #item form route
@@ -167,7 +176,7 @@ def register():
         db.session.commit()
 
         #return to main page
-        return redirect(url_for('main.index'))
+        return redirect(url_for('main.login'))
 
 #############################################
 #                 L O G I N                 #                
