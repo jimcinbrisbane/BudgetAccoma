@@ -1,11 +1,15 @@
 from flask import Blueprint,render_template, redirect, url_for, request
+from flask_login import UserMixin, login_manager
 from .models import User,Item,Bid
 from .forms import RegestierForm, LoginForm, itemForm, searchForm
 import datetime
 from . import db
 from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash, check_password_hash
 import os
 from . import create_app
+from . import auth
+mainbp = Blueprint('main',__name__)
 
 # the function to get the upload path so we can store it to the database
 def check_upload_file(form):
@@ -22,7 +26,6 @@ def check_upload_file(form):
           fp.save(upload_path)
           return db_upload_path
 
-mainbp = Blueprint('main',__name__)
 @mainbp.route('/search', methods = ['GET'])
 def search():
     search_form = searchForm()
@@ -115,10 +118,14 @@ def register():
         email = registerform.email.data
 
         #create password hash
-        #password_hash = generate_password_hash(pass_word)
-        user1 = User(name=username,emailid=email,password_hash=pass_word)
-        db.session.add(user1)
+        hashWord = generate_password_hash(pass_word)
+
+        #create a new user account
+        newUser = User(name=username, emailid=email, password_hash=hashWord)
+        db.session.add(newUser)
         db.session.commit()
+
+        #return to main page
         return redirect(url_for('main.index'))
 
 #routing for login
@@ -127,5 +134,23 @@ def login():
     login_form = LoginForm()
     return render_template('login.html', login_form = login_form)
 
+@mainbp.route('/log', methods = ['GET','POST'])
+def log():
+    login_form=LoginForm()
+    error=None
+    if(login_form.validate_on_submit()):
+        username = login_form.user_name.data
+        pass_word = login_form.pass_word.data
+        u1 = User.query.filter_by(name = user_name).first()
 
+        if u1 is None:
+            error='Incorrect Username'
+        elif not check_password_hash(u1.check_password_hash,password):
+            error='Incorrect Password'
+        if error is None:
+            return redirect(url_for('main.index'))
+        else:
+            print(error)
+            flash(error)
 
+    return render_template('',login_form=login_form, heading='Login')

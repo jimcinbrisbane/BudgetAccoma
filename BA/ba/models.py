@@ -1,9 +1,10 @@
 # sql database sigma   
 from . import db
+from flask_login import UserMixin, login_manager
 from datetime import datetime
 
 #user sigma
-class User(db.Model):
+class User(db.Model,UserMixin):
     __tablename__='user' # good practice to specify table name
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(32), index=True, unique=True, nullable=False)
@@ -16,7 +17,7 @@ class User(db.Model):
     # relation to call user.comments and comment.created_by
 
 #item sigma
-class Item(db.Model):
+class Item(db.Model,UserMixin):
     __tablename__ = 'item'
     id = db.Column(db.String, primary_key=True)
     title = db.Column(db.String(32))
