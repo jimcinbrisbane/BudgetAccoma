@@ -1,5 +1,5 @@
 from flask import Blueprint,render_template, redirect, url_for, request
-from flask_login import UserMixin, login_manager
+from flask_login import UserMixin, LoginManager
 from .models import User,Item,Bid
 from .forms import RegestierForm, LoginForm, itemForm, searchForm
 import datetime
@@ -8,6 +8,7 @@ from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 from . import create_app
+
 
 
 #############################################
