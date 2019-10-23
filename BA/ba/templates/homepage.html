@@ -50,7 +50,9 @@
                             <!-- right aligned menu items thanks to ml-auto -->
                             <ul class="nav navbar-nav ml-auto">
                                     <li class="nav-item active">
-                                            <a class="nav-item nav-link text-light active" href="#"><i class="fas fa-globe-asia" style="font-size: 150%"></i> About Us </a>
+                                            <a href ="./logout"class="nav-item nav-link text-light active"><i class="fas fa-globe-asia" style="font-size: 150%"></i> {% if current_user.is_authenticated %}
+                                                Hi {{ current_user.name }}!{% else %} User is not Logged in
+                                              {% endif %} </a>
 
                                     </li>
                                     <li class="nav-item active">

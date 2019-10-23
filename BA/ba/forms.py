@@ -7,21 +7,19 @@ from flask_wtf.file import FileField, FileRequired, FileAllowed
 
 # register form
 class RegestierForm(FlaskForm):
-    user_name = StringField('User Name', validators=[InputRequired()] )
-    email = StringField('Email Address', validators=[InputRequired()])
-    password = PasswordField('New Password', [
-        validators.DataRequired(),
-        validators.EqualTo('confirm', message='Passwords must match')
-    ])
-    confirm = PasswordField('Repeat Password')
-    submit = SubmitField("Submit")
 
+    #get user data
+    user_name = StringField('Username*', validators=[InputRequired()])
+    email = StringField('Email Address*', validators=[InputRequired()])
+    password = PasswordField('Enter a Password*', validators = [InputRequired()])
+    confirm = PasswordField('Confirm Password*', validators=[InputRequired()])
+    submit = SubmitField("Submit")
 
 
 # login form
 class LoginForm(FlaskForm):
-    user = StringField('Username', validators=[InputRequired()] )
-    login = StringField('Password', validators=[InputRequired()])
+    user_name = StringField('Username', validators=[InputRequired()] )
+    pass_word = PasswordField('Password', validators=[InputRequired()])
     submit = SubmitField("Submit")
 
 # item form
@@ -41,6 +39,7 @@ class itemForm(FlaskForm):
 
     submit= SubmitField("Create")
 
+# Search form
 class searchForm(FlaskForm):
     price=StringField('Price',validators=[InputRequired])
     location=StringField('Location',validators=[InputRequired])

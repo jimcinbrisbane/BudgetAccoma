@@ -25,6 +25,8 @@ def create_app():
    # get bootstrap init
     boostrap = Bootstrap(app)
     #initialize the login manager
+    #add login manager support
+    #initialize the login manager
     login_manager = LoginManager()
     
     #set the name of the login function that lets user login
@@ -37,9 +39,10 @@ def create_app():
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
-    # blue print
     from .views import mainbp
     app.register_blueprint(mainbp)
+
+    
 
     return app
 
