@@ -1,6 +1,6 @@
 # sql database sigma   
 from . import db
-from flask_login import UserMixin, login_manager
+from flask_login import UserMixin
 from datetime import datetime
 
 #user sigma
@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
 	# the storage should be at least 255 chars long
     password_hash = db.Column(db.String(255), nullable=False)
     def __repr__(self): #string print method
-        return "<name: {}, emailid: {}>".format(self.name, self.emailid)
+        return "<name: {}, emailid: {}, id: {}>".format(self.name, self.emailid, self.id)
     # relation to call user.comments and comment.created_by
 
 #item sigma

@@ -43,7 +43,7 @@ def post():
     if current_user.is_anonymous:
         return redirect('/login')
     else:
-        print(current_user)
+        print(current_user.name)
 
     tag_line="I'm the landlord"
     
@@ -58,7 +58,8 @@ def post():
 @mainbp.route('/landlordlist')
 def postitems():
     tag_line="I'm the landlord"
-    room = Item.query.filter(Item.user_id == '1').order_by(Item.id.desc()).all()
+    print(current_user.id)
+    room = Item.query.filter(Item.user_id == current_user.id).order_by(Item.id.desc()).all()
     search_form = searchForm()
     return render_template('landlordlist.html', search_form = search_form, room = room, tag_line=tag_line)
 
@@ -112,7 +113,6 @@ def create_item():
     # a simple function: doesnot handle errors in file types and file not being uploaded
     
     # if the form was successfully submitted, access the values in the form data
-    print([aform.title.data,aform.description.data,aform.gas.data,aform.price.data,aform.water.data,aform.address.data,aform.gas.data,aform.mobile.data])
     
     #insert item into database
     newitem = Item(id = datetime.datetime.now().isoformat(),#as you can see I used datetime as Primary Key
@@ -126,7 +126,7 @@ def create_item():
                 eletricity = aform.eletricity.data,
                 gas = aform.gas.data,
                 mobile = aform.mobile.data,
-                user_id = 1,
+                user_id = current_user.id,
                 )
 
     #add the object to the db session
@@ -228,4 +228,4 @@ def logout():
         print(current_user)
 
     logout_user()
-    return redirect()
+    return redirect(url_for('main.index'))
