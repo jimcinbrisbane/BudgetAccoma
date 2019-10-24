@@ -1,38 +1,23 @@
+<!--Header and Template import-->
 {% extends "baseTemplate.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
+
+
+
+<!--Begin page content-->
 {% block content %}
-
-
-
-<div style="padding:32px; text-align: left; background-color:rgba(255,255,255,0.92); color:black">                        
-  {{wtf.quick_form(aform, action=url_for('main.create_item'))}} 
-  <a href="/landlordlist" style="border-radius: 3px!important; ;margin-right: 8px"> Go Back </a>
-  <a href="/remove/{{info.id}}" style="border-radius: 3px!important;"> Delete this item </a>
-
-
-
-</div>
-
-    </div>
-    <p>Copyright &copy;2019 Budget Accoma</p>
-
+  <!--New item form-->
+  <body>
+    <div style="padding:40px">
+      <div style="padding:32px; text-align: left; background-color:rgba(255,255,255,0.92); color:black">                        
+        {{wtf.quick_form(aform, action=url_for('main.create_item'))}} 
+        <a href="/landlordlist" style="border-radius: 3px!important; ;margin-right: 8px"> Go Back </a>
+        <a href="/remove/{{info.id}}" style="border-radius: 3px!important;"> Delete this item </a>
+      </div>
   </div>
 
-
-
-
-</div>
-            
-        <!-- search box -->
-            
-
-</div>
-</div>
-</div>
-
-
-
-
+  </body>
+{% endblock %}
 
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -46,8 +31,8 @@ crossorigin="anonymous"></script>
 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 crossorigin="anonymous"></script>
 
-</body>
 
 
-{% endblock %}
+
+
 

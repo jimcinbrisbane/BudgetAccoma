@@ -1,34 +1,14 @@
 {% extends "baseTemplate.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-{% block content %}
 
+{% block content %}
+<div style="padding:40px">
 <div style="padding:32px; text-align: left; background-color:rgba(255,255,255,0.92); color:black">                        
   {{wtf.quick_form(aform, action=url_for('main.create_item'))}} 
-
-
-</div>
-
-    </div>
-    <p>Copyright &copy;2019 Budget Accoma</p>
-
-  </div>
-
-
-
-
-</div>
-            
-        <!-- search box -->
-            
-
 </div>
 </div>
-</div>
-
-
-
-
-
+</body>
+{% endblock %}
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -41,8 +21,5 @@ crossorigin="anonymous"></script>
 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 crossorigin="anonymous"></script>
 
-</body>
 
-
-{% endblock %}
 
