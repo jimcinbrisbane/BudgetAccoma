@@ -39,7 +39,8 @@ class Bid(db.Model):
     __tablename__ = 'bid'
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime)
-    perDesc = db.Column(db.String(512))
-    lengthofstay = db.Column(db.String(255))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     item_id = db.Column(db.String, db.ForeignKey('item.id'))
+    def __repr__(self): #string print method
+
+         return "<id: {}, date: {}, user_id: {},item_id: {}>".format(self.id, self.date, self.user_id, self.item_id)

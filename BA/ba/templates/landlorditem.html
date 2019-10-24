@@ -7,7 +7,27 @@
 <!--Begin page content-->
 {% block content %}
   <!--New item form-->
+
+  {{biditem}}
   <body>
+      {%for bid in biditem%}
+
+      <div style="padding:40px">
+          <div style="padding:32px; text-align: left; background-color:rgba(255,255,255,0.92); color:black">                        
+<h3>People who are interested in your item</h3>
+
+ <h4> Bid Date</h4>
+<p>  {{bid.date}} 
+  </p>
+<p> User ID:{{bid.user_id}}
+
+  </p>
+  {%endfor%}
+
+
+            <a href="/landlordlist" style="border-radius: 3px!important; ;margin-right: 8px"> Go Back </a>
+          </div>
+      </div>
     <div style="padding:40px">
       <div style="padding:32px; text-align: left; background-color:rgba(255,255,255,0.92); color:black">                        
         {{wtf.quick_form(aform, action=url_for('main.create_item'))}} 

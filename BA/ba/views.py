@@ -98,7 +98,8 @@ def landlorditem(id):
     tag_line='Budget Accomadation: Cheap Sharehouse For Broke You!'
     info = Item.query.filter_by(id=id).first()  
     aform = itemForm(obj=info)
-    return render_template('landlorditem.html', search_form = search_form,aform=aform, tag_line=tag_line, info=info)
+    biditem = Bid.query.filter_by(item_id = id).all()
+    return render_template('landlorditem.html',biditem=biditem, search_form = search_form,aform=aform, tag_line=tag_line, info=info)
 
 @mainbp.route('/remove/<id>')
 def itemdelete(id):
@@ -175,8 +176,21 @@ def create_item():
     flash('Successfully created new travel destination', 'success')
     print('Successfully created new room info', 'success')
     return redirect(url_for('main.index'))
-
-
+#############################################
+#           ADD BID                         #
+#############################################
+@mainbp.route('/bid/<id>', methods = ['GET','POST'])
+def place_bid(id):
+    newbid=Bid(date=datetime.datetime.now(),
+            item_id=id,
+            user_id=current_user.id
+            )
+    print(datetime.datetime.now(),id,current_user.id)
+    db.session.add(newbid)
+    db.session.commit()
+    flash('Successfully bid on the item','success')
+    print('Successfully bid on item','success')
+    return redirect(url_for('main.index'))
 #############################################
 #           R E G I S T R A T I O N         #                
 #############################################
