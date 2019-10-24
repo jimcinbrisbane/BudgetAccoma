@@ -67,13 +67,13 @@ body{
     padding: 10px 100px 10px 100px;
     text-align: center;
     font-size: 16px;
-    margin: 2px 8px -24px 8px;
+    margin: 2px 8px -1px 8px;
     transition: 0.3s;
     display: inline-block;
     text-decoration: none;
     cursor: pointer;
     border-radius: 0px 0px 8px 8px;
-    font-size: 100%;
+    font-size: 72%;
   }  
 #submit:hover {    background-color: rgb(0, 20, 50);}
 
