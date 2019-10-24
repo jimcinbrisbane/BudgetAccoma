@@ -27,28 +27,39 @@ def search():
         print(price)
         location = search_form.location.data
         search = "%{}%".format(location)
-        room = Item.query.filter(price <= price,Item.address.like(search)).all()
-        print(room)
+        try:
+         room = Item.query.filter(price <= price,Item.address.like(search)).all()
         #if price and location is not None:
          #   info = Item.message.match("%"+ location +"%").all()  
         #elif price is None:
           #  info = Item.query.filter_by(Item.message.match("%"+ location +"%")).all() 
         #elif location is None:
          #   info = Item.query.filter_by(price<=int(price)).all() 
-        return render_template('landlordlist.html', room = room)
+        except:
+            flash("sorry no room fits this criteria, please try again")
+            room = Item.query.order_by(Item.id.desc()).limit(3).all()
+        #if price and location is not None:
+         #   info = Item.message.match("%"+ location +"%").all()  
+        #elif price is None:
+          #  info = Item.query.filter_by(Item.message.match("%"+ location +"%")).all() 
+        #elif location is None:
+         #   info = Item.query.filter_by(price<=int(price)).all() 
+        return render_template('searchresult.html', room = room,search_form = search_form
+)
 ############################################
 # homepage route
 @mainbp.route('/')
 def index():
     search_form = searchForm()
     tag_line='Budget Accomadation: Cheap Sharehouse For Broke You!'
-    room = Item.query.order_by(Item.id.desc()).limit(3).all()
+    room = Item.query.order_by(Item.id.desc()).limit(9).all()
     return render_template('homepage.html', room = room, search_form = search_form, tag_line=tag_line)
 
 ############################################
 #item form route
 @mainbp.route('/landlord')
 def post():
+    search_form = searchForm()
     if current_user.is_anonymous:
         return redirect('/login')
     else:
@@ -58,26 +69,36 @@ def post():
     
     aform = itemForm()
 
-    return render_template('index_reuse.html', tag_line=tag_line,
-                    #form=form, form2=form2, 
-                    aform=aform)
+    return render_template('index_reuse.html', tag_line=tag_line, search_form = search_form,aform=aform)
 
 
 #item form route
 @mainbp.route('/landlordlist')
 def postitems():
+    if current_user.is_anonymous:
+        return redirect('/login')
+    else:
+        print(current_user.name)
+
+    search_form = searchForm()
     tag_line="I'm the landlord"
     print(current_user.id)
     room = Item.query.filter(Item.user_id == current_user.id).order_by(Item.id.desc()).all()
-    return render_template('landlordlist.html', room = room, tag_line=tag_line)
+    return render_template('landlordlist.html', room = room,search_form = search_form, tag_line=tag_line)
 
 #information page/room information route
 @mainbp.route('/landlorditem/<id>')
 def landlorditem(id):
+    if current_user.is_anonymous:
+        return redirect('/login')
+    else:
+        print(current_user.name)
+
+    search_form = searchForm()
     tag_line='Budget Accomadation: Cheap Sharehouse For Broke You!'
     info = Item.query.filter_by(id=id).first()  
     aform = itemForm(obj=info)
-    return render_template('landlorditem.html', aform=aform, tag_line=tag_line, info=info)
+    return render_template('landlorditem.html', search_form = search_form,aform=aform, tag_line=tag_line, info=info)
 
 @mainbp.route('/remove/<id>')
 def itemdelete(id):
@@ -92,10 +113,11 @@ def itemdelete(id):
 #information page/room information route
 @mainbp.route('/sharehouse/<id>')
 def sharehousePage(id):
+    search_form = searchForm()
     info = Item.query.filter_by(id=id).first()  
     tag_line='Budget Accomadation: Cheap Sharehouse For Broke You!'
     name = Item.query.filter_by(id=id).first()  
-    return render_template('roomInfo.html', tag_line=tag_line, info=info)
+    return render_template('roomInfo.html', search_form = search_form,tag_line=tag_line, info=info)
 
 #############################################
 #        D A T A B A S E - P A T H          #                
@@ -150,7 +172,7 @@ def create_item():
     
     #commit to the database
     db.session.commit()
-    #flash('Successfully created new travel destination', 'success')
+    flash('Successfully created new travel destination', 'success')
     print('Successfully created new room info', 'success')
     return redirect(url_for('main.index'))
 
@@ -162,7 +184,8 @@ def create_item():
 @mainbp.route('/reg')
 def reg():
     registerform = RegestierForm()
-    return render_template('register.html',registerform = registerform)
+    search_form = searchForm()
+    return render_template('register.html',search_form = search_form,registerform = registerform)
 
 @mainbp.route('/register', methods = ['POST'])
 def register():
@@ -203,7 +226,8 @@ def load_user(user_id):
 @mainbp.route('/login')
 def login():
     login_form = LoginForm()
-    return render_template('login.html', login_form = login_form)
+    search_form = searchForm()
+    return render_template('login.html',search_form = search_form, login_form = login_form)
 
 #this is the login function
 @mainbp.route('/log', methods = ['GET','POST'])
@@ -227,7 +251,6 @@ def log():
             print(u1)
             login_user(u1)
             print(u1)
-            flash("session failed, try again")
             return redirect(url_for('main.index'))
         else:
             return redirect(url_for('main.login'))

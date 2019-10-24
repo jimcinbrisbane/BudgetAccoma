@@ -29,8 +29,8 @@ class itemForm(FlaskForm):
     description = StringField('Room Description', validators=[InputRequired()])
     image = FileField('image', validators=[FileRequired(),FileAllowed({ 'jpg', 'JPG', 'png', 'PNG'}, 'Images only!')])
    
-    price = IntegerField('Price', validators=[InputRequired()])
-    address = StringField('Address', validators=[InputRequired()])
+    price = IntegerField('Price Per Week', validators=[InputRequired()])
+    address = StringField('Address and Postcode', validators=[InputRequired()])
     mobile = IntegerField('Contact Number', validators=[InputRequired()])
     water = BooleanField('Water Included?')
     wifi = BooleanField('WiFi Included?')
@@ -42,5 +42,5 @@ class itemForm(FlaskForm):
 # Search form
 class searchForm(FlaskForm):
     price=StringField('Price',validators=[InputRequired()])
-    location=StringField('Location',validators=[InputRequired()])
+    location=StringField('Postcode',validators=[InputRequired()])
     submit = SubmitField('Search')

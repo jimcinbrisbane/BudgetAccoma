@@ -45,7 +45,8 @@
                         <div class="collapse navbar-collapse" id="navbarNav">
 
                             <!-- individual menu item-->
-                            <a class="nav-item nav-link text-light active" href="./landlord">I'm a Landlord</a>
+                            <a class="nav-item nav-link text-light active" href="./landlord">I'm renting</a>
+                            <a class="nav-item nav-link text-light active" href="./landlordlist">View my Item</a>
 
                             <!-- right aligned menu items thanks to ml-auto -->
                             <ul class="nav navbar-nav ml-auto">
@@ -58,10 +59,7 @@
                                     <li class="nav-item active">
                                      </li>
 
-                                    <li class="nav-item">
-                                            <a class="nav-item nav-link text-light active" href="./login"><i class="fas fa-igloo" style="font-size: 150%"></i> Login</a>
-
-                                    </li>
+                                   
                                     <li class="nav-item">
                                             <a class="nav-item nav-link text-light active" href="./reg"><i class="fas fa-igloo" style="font-size: 150%"></i> Register</a>
 
@@ -75,6 +73,16 @@
                     <h1 style="margin: auto; font-size: 128px;">Budget Accoma<h1>
                         <p> </p>
                             <h1 style="margin: auto">Share House for Poor You!<h1>
+                                    {% with messages = get_flashed_messages() %}
+                                    {% if messages %}
+                                      <ul class=flashes>
+                                      {% for message in messages %}
+                                        <li>{{ message }}</li>
+                                      {% endfor %}
+                                      </ul>
+                                    {% endif %}
+                                  {% endwith %}
+                                  {% block body %}{% endblock %}
                                     <p class='flu'> </p>
 
 
@@ -120,7 +128,7 @@
    <!-- Footer -->
    <footer class="footer">
     <div class="container text-center">
-        <p>Copyright &copy; Milton Hotels</p>
+        <p>Copyright &copy; BudgetAccomma</p>
     </div>
 </footer>
 <!-- Footer -->

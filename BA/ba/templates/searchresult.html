@@ -3,7 +3,7 @@
 
 {% block content %}
 
-        <h4 style="margin-left: 3%; color:white">Your Properity</h4> 
+        <h4 style="margin-left: 3%; color:white">Search Result</h4> 
 
         <div class="row" style="margin: 3%;">
             {%for item in room%}
@@ -17,7 +17,7 @@
                             <p class="card-text"><i class="fas fa-user"></i> 4 people <br /> {{item.address}}
                               <br />
                               <i class="fas fa-shower"></i> <i class="fas fa-fire"></i> <i class="fas fa-wifi"></i> </p>
-                            <a href="/landlorditem/{{item.id}}" class="btn btn-primary">Edit</a>
+                            <a href="/landlorditem/{{item.id}}" class="btn btn-primary">Check it out</a>
                           </div>
                     </div>
                   </div>

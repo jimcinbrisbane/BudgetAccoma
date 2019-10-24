@@ -2,6 +2,7 @@ from flask import Flask,render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
+from .forms import searchForm
 #init database
 db=SQLAlchemy()
 
@@ -21,7 +22,8 @@ def create_app():
     # error handler
     @app.errorhandler(404)
     def not_found(e):
-       return render_template('404.html'),404
+       search_form = searchForm()
+       return render_template('404.html', search_form=search_form),404
    # get bootstrap init
     boostrap = Bootstrap(app)
     #initialize the login manager

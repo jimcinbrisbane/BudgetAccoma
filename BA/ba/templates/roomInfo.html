@@ -1,95 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "baseTemplate.html" %}
 
-<head>
-    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Budget Accomma: Cheap Accomadation</title>
-    <meta name="description" content="Milton Hotels">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+{% block content %}
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="../static/css/replaceugly.css">
-
-</head>
-
-<body>
-
-    <!-- putting header inside container will prevent full width navbar -->
-
-
-
-     
-        
-        <!-- Hero / Banner Section -->
-        <!-- Scaling text: https://www.sitepoint.com/build-responsive-type-scale-bootstrap/ -->
-
-        <div class="jumbotron jumbotron-fluid card card-image" style="background-image: url(../static/img/jumbo.jpg); background-position: top">
-            <div class="text-white text-center py-5 px-4">
-                <div>
-                        <nav class="navbar navbar-expand-lg navbar-light bg-info" style="margin-right: auto;">
-
-
-                            </a>
-                            <!-- create a button for collapsing the menu -->
-                            <button style="display :none" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="navbarNav">
-                
-                                <!-- individual menu item-->
-    
-                                
-                               
-                                   </h1></div>
-    
-                
-                                <!-- right aligned menu items thanks to ml-auto -->
-                                <ul class="nav navbar-nav ml-auto">
-                                  <li><form class="form-inline my-5 my-lg-2 ml-10">
-                                      <div style= "width:100%; margin-left:-5%;"><input style = "width:400px; height:60px; margin-top:12px;" class="form-control mr-sm-2" type="search" placeholder="Max Price" aria-label="Search">
-                                             <input style = "width:400px; height:60px; margin-top:12px;" class="form-control mr-sm-2" type="search" placeholder="Location" aria-label="Search">
-                                             <input style = "width:400px; height:60px; margin-top:12px;" class="form-control mr-sm-2" type="search" placeholder="Radius" aria-label="Search">
-                                    </div> <div style= "width:90%;"><button  style = "height:40px;width:300px; margin:auto;"class="btn black-gradient btn-rounded btn-sm my-0 btn-secondary ml-1"
-                                                 type="submit">Find</button> 
-                                             </div>
-                                         </form></li>
-                                        <li class="nav-item active">
-                                                <a class="nav-item nav-link text-light active" href="#"><i class="fas fa-globe-asia" style="font-size: 150%"></i> About Us </a>
-        
-                                        </li>
-                                        <li class="nav-item active">
-                                         </li>
-                                       
-                                        <li class="nav-item">
-                                                <a class="nav-item nav-link text-light active" href="./lanlord.html"><i class="fas fa-igloo" style="font-size: 150%"></i> Login</a>
-    
-                                        </li>
-                                        <li class="nav-item">
-                                                <a class="nav-item nav-link text-light active" href="./form.html">I'm a Landlord</a>
-    
-                                        </li>
-                                    </ul>
-                
-                        </nav>
-                
-                            </div>
-                    <p> </p>
-                    <p> </p>
-                    <p> </p>
                     <div class="row">
                             <div style="background-color:transparent;">                    
-                                    <img style="width: 800px; margin-left:2%;"src="..{{info.image}}" class="rounded border border-secondary" alt="Cinque Terre" style="margin: 1%; margin-right:80%;"> 
+                                    <img style="width: 800px; margin-left:5%;"src="..{{info.image}}" class="rounded border border-secondary" alt="Cinque Terre" style="margin: 1%; margin-right:80%;"> 
                                 </div>
                           
-                            <div style="background-color:rgba(255,255,255,0.7); margin-left: 2%; margin-top: 10px; color:black; width: 800px">
+                            <div style="background-color:rgba(255,255,255,0.7); margin-left: 3%; margin-top: 10px; color:black; width: 800px">
 
                                 
 
-                                <h2>{{info.title}}</h2>
+                                <h2 style="text-align: center">{{info.title}}</h2>
                                 <div style="text-align: left; margin: 5%">
                                 <h4><i class="fas fa-user"></i> 4 people <br /> {{info.address}}
 
@@ -129,18 +52,8 @@
 
 
                 
-                         
-                                    
-                                <!-- search box -->
-                                    
-
-                </div>
-                <div class="container text-center" style="margin: 8px">
-                    <p> </p>
-                        <p>Copyright &copy;2019 Budget Accoma</p>
-                    </div>
-            </div>
-        </div>
+    
+{% endblock %}
 
 
 

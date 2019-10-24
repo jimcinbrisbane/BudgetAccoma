@@ -1,16 +1,7 @@
 {% extends "baseTemplate.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 {% block content %}
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul class=flashes>
-    {% for message in messages %}
-      <li>{{ message }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
-{% block body %}{% endblock %}
+
 <div style="padding:32px; text-align: left; background-color:rgba(255,255,255,0.92); color:black">                        
   {{wtf.quick_form(login_form, action=url_for('main.log'))}} 
 

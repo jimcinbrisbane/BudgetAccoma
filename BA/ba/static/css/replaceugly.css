@@ -4,6 +4,8 @@ body{
     font-family: 'Montserrat', sans-serif;
 
 }
+
+
 .bg-info{
     background-color: transparent !important; 
 }
@@ -29,6 +31,10 @@ body{
 }
 .navbar-expand-lg .navbar-collapse{
     height:60px;
+}
+.btn btn-default{
+    background-color: darkblue !important; 
+
 }
 
 @media only screen and (max-width: 1080px)

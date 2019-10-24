@@ -1,23 +1,26 @@
 {% extends "baseTemplate.html" %}
 
 {% block content %}
+<div style="background-color:white;">
 <h1 style='margin:auto;
            padding:18px'>
-           Error 418: no coffee under my teapot
-        </h1>
-<h6>
+           Error 418: no coffee under my teapot</h1>
+<h6 style='margin:auto;
+           padding:18px'>
     Any attempt to brew coffee with a teapot 
     should result in the HTTP error code 418 
     I'm a teapot and the resulting entity body MAY be short and stout
 </h6>
 <img style="
             border-radius: 6px; 
+            margin:auto;
             margin-bottom: 48px;
             width:500px
-            ;height:600px;""
+            ;height:auto;""
             src="../static/img/tea.png" 
             alt="Any attempt to brew coffee with 
             a teapot should result in the HTTP error code 418
              I'm a teapot and the resulting entity body MAY be short and stout" 
-> {% endblock %}
+>       </div>
+{% endblock %}
 

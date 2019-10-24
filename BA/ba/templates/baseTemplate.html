@@ -1,3 +1,5 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,6 @@
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Budget Accomma: Cheap Accomadation</title>
-    <meta name="description" content="Milton Hotels">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <!-- Bootstrap CSS -->
@@ -41,36 +42,55 @@
                         <div class="collapse navbar-collapse" id="navbarNav">
             
                             <!-- individual menu item-->
+                            <form class="form-inline " method="post" role="search_form", action="/search" style="margin:10px;">
+                                <li class="nav-item active">
+                                        {{search_form.price}}
 
+                                </li>
+                                <li class="nav-item active">
+                                        {{search_form.location}}
+                                        {{search_form.csrf_token }}
+
+                                </li>
+                                <li class="nav-item active">
+                                        <input type="submit" value="Go">
+                                </li>
+                              </form>
                             
                            
-                               </h1></div>
+                               </div>
 
             
                             <!-- right aligned menu items thanks to ml-auto -->
                             <ul class="nav navbar-nav ml-auto">
-                              <li><form class="form-inline my-5 my-lg-2 ml-10">
-                                  <div style= "width:100%; margin-left:-5%;"><input style = "width:400px; height:60px; margin-top:12px;" class="form-control mr-sm-2" type="search" placeholder="Max Price" aria-label="Search">
-                                         <input style = "width:400px; height:60px; margin-top:12px;" class="form-control mr-sm-2" type="search" placeholder="Location" aria-label="Search">
-                                </div> <div style= "width:90%;"><button  style = "height:40px;width:300px; margin: auto;"class="btn black-gradient btn-rounded btn-sm my-0 btn-secondary ml-1"
-                                             type="submit">Find</button> 
-                                         </div>
-                                     </form></li>
                                     <li class="nav-item active">
-                                            <a class="nav-item nav-link text-light active" href="#"><i class="fas fa-globe-asia" style="font-size: 150%"></i> About Us </a>
-    
+                                            <a href ="./logout"class="nav-item nav-link text-light active"><i class="fas fa-globe-asia" style="font-size: 150%"></i> {% if current_user.is_authenticated %}
+                                                Hi {{ current_user.name }}!{% else %} User is not Logged in
+                                              {% endif %} </a>
+
                                     </li>
                                     <li class="nav-item active">
                                      </li>
                                    
                                     <li class="nav-item">
-                                            <a class="nav-item nav-link text-light active" href="./login"><i class="fas fa-igloo" style="font-size: 150%"></i> Login</a>
                                             <a class="nav-item nav-link text-light active" href="./reg"><i class="fas fa-igloo" style="font-size: 150%"></i> Register</a>
-                                            <a class="nav-item nav-link text-light active" href="./landlord">I'm a Landlord</a>
+                                            <a class="nav-item nav-link text-light active" href="./landlord">I'm renting</a>
+                                            <a class="nav-item nav-link text-light active" href="./landlordlist">View my Item</a>
 
                                     </li>
                                 </ul>
             
-                    </nav>
+                    </nav></div></div>
+                    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li style="color: aliceblue;">{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}
                     {% block content %} {% endblock %} 
-                    <p> Copyright © Budget Accoma, All right reserved</p>
+</div></body>               <footer>
+                    <p style="margin-top: 32px;"> Copyright © Budget Accoma, All right reserved</p></footer>
