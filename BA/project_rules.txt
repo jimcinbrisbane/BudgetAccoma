@@ -1,4 +1,0 @@
-Whenever you make any changes and are about to upload the code, notify the group chat so we know when somebody is uploading and we don't override any existing changes
-Also make sure to include comments to describe how and what you changed in the code
-Try and adhere to the general coding style of the html
-if there's a problem in merge.... screenshot it and we'll work something out....
