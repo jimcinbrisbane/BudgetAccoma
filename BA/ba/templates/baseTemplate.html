@@ -2,7 +2,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,64 +12,57 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="../static/css/replaceugly.css">
-
 </head>
 
-<body>
 
-    <!-- putting header inside container will prevent full width navbar -->
+<!--
+#############################################
+#               Header Bar               #                
+#############################################
+-->
 
-
-
-     
-        
-        <!-- Hero / Banner Section -->
+<body>  
+        <!-- Hero / Banner Section -->      
         <!-- Scaling text: https://www.sitepoint.com/build-responsive-type-scale-bootstrap/ -->
 
-        <div class="jumbotron jumbotron-fluid card card-image" style="background-image: url(../static/img/jumbo.jpg); height:1080px; background-position: top">
-            <div class="text-white text-center py-5 px-4">
-                <div>
-                    <nav class="navbar navbar-expand-lg navbar-light bg-info" style="margin-right: auto;">
+    <div class="jumbotron jumbotron-fluid card card-image" style="background-image: url(../static/img/jumbo.jpg); height:1080px; background-position: top">
+        <div class="text-white text-center py-5 px-4">
+            <div>
+                <nav class="navbar navbar-expand-lg navbar-light bg-info" style="margin-right: auto;">
+                    
+                    <!-- create a button for collapsing the menu -->
+                    <button style="display :none" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <div class="navbar">     
+                        <!-- individual menu item-->
+                        {{wtf.quick_form(search_form, action=url_for('main.search'))}}                       
+                            </div>       
+                        <!-- right aligned menu items thanks to ml-auto -->
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                    <a href ="./logout"class="nav-item nav-link text-light active"><i class="fas fa-globe-asia" style="font-size: 150%"></i> {% if current_user.is_authenticated %}
+                                        Hi {{ current_user.name }}!{% else %} User is not Logged in
+                                        {% endif %} </a>
+                            </li>
+                            <li class="nav-item active">
+                                </li>
+                            <li class="nav-item">
+                                    <a class="nav-item nav-link text-light active" href="./reg"><i class="fas fa-igloo" style="font-size: 150%"></i> Register</a>
+                                    <a class="nav-item nav-link text-light active" href="./landlord">I'm renting</a>
+                                    <a class="nav-item nav-link text-light active" href="./landlordlist">View my Item</a>
 
+                            </li>
+                        </ul>
+        
+                </nav>
+            </div>
+        </div>
+<!-- ??? -->
 
-                        </a>
-                        <!-- create a button for collapsing the menu -->
-                        <button style="display :none" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="navbar">
-            
-                            <!-- individual menu item-->
-  
-                            {{wtf.quick_form(search_form, action=url_for('main.search'))}} 
-
-                           
-                               </div>
-
-            
-                            <!-- right aligned menu items thanks to ml-auto -->
-                            <ul class="nav navbar-nav ml-auto">
-
-                                    <li class="nav-item active">
-                                            <a href ="./logout"class="nav-item nav-link text-light active"><i class="fas fa-globe-asia" style="font-size: 150%"></i> {% if current_user.is_authenticated %}
-                                                Hi {{ current_user.name }}!{% else %} User is not Logged in
-                                              {% endif %} </a>
-
-                                    </li>
-                                    <li class="nav-item active">
-                                     </li>
-                                   
-                                    <li class="nav-item">
-                                            <a class="nav-item nav-link text-light active" href="./reg"><i class="fas fa-igloo" style="font-size: 150%"></i> Register</a>
-                                            <a class="nav-item nav-link text-light active" href="./landlord">I'm renting</a>
-                                            <a class="nav-item nav-link text-light active" href="./landlordlist">View my Item</a>
-
-                                    </li>
-                                </ul>
-            
-                    </nav></div></div>
-                    {% with messages = get_flashed_messages() %}
+{% with messages = get_flashed_messages() %}
   {% if messages %}
     <ul class=flashes>
     {% for message in messages %}
@@ -79,7 +71,18 @@
     </ul>
   {% endif %}
 {% endwith %}
-{% block body %}{% endblock %}
-                    {% block content %} {% endblock %} 
-</div></body>               <footer>
-                    <p style="margin-top: 32px;"> Copyright © Budget Accoma, All right reserved</p></footer>
+{% block body %}
+{% endblock %}
+{% block content %} 
+{% endblock %} 
+</div>
+</body>    
+
+<!--
+#############################################
+#                Main Footer                #                
+#############################################
+-->
+<footer>
+    <p style="margin-top: 32px;"> Copyright © Budget Accoma, All right reserved</p>
+</footer>
