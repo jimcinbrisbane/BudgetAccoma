@@ -120,7 +120,7 @@ def sharehousePage(id):
     return render_template('roomInfo.html', search_form = search_form,tag_line=tag_line, info=info)
 
 #############################################
-#        D A T A B A S E - P A T H          #                
+#         D A T A B A S E - P A T H         #                
 #############################################
 
 def check_upload_file(form):
