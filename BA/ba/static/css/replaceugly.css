@@ -36,9 +36,70 @@ body{
     background-color: darkblue !important; 
 
 }
+#price{
+    background-color: white;
+    width: 100%;
+    padding: 5px;
+    border-radius: 8px;
+    resize: vertical;  
+    border-color: transparent ; 
 
-@media only screen and (max-width: 1080px)
+}
+#btn {
+    background-color: rgb(2, 129, 255);
+    border: none;
+    color: white;
+    padding: 12px 18px 1px 18px;
+    text-align: center;
+    font-size: 16px;
+    margin: 2px 8px -24px 8px;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 0px 0px 8px 8px;
+    top: 100px;
+  }
+#submit {
+    background-color: rgb(2, 129, 255);
+    border: none;
+    color: white;
+    padding: 10px 100px 10px 100px;
+    text-align: center;
+    font-size: 16px;
+    margin: 2px 8px -24px 8px;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 0px 0px 8px 8px;
+    font-size: 100%;
+  }  
+#submit:hover {    background-color: rgb(0, 20, 50);}
+
+#btn:hover {    background-color: rgb(0, 20, 50);}
+#location{background-color: white;
+    width: 100%;
+    padding: 5px;
+    border-color: transparent ; 
+
+    border-radius: 8px;
+    resize: vertical;   }
+::placeholder {
+        color: lightcyan;
+        opacity: 1; /* Firefox */
+      }
+      
+      :-ms-input-placeholder { /* Internet Explorer 10-11 */
+       color:lightcyan;
+      }
+      
+      ::-ms-input-placeholder { /* Microsoft Edge */
+       color: lightcyan;}
+@media only screen and (max-width: 800px)
 {
 .flu{
     height: 2px;
 }}
+
+

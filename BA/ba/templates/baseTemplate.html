@@ -39,30 +39,19 @@
                             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <div class="collapse navbar-collapse" id="navbarNav">
+                        <div class="navbar">
             
                             <!-- individual menu item-->
-                            <form class="form-inline " method="post" role="search_form", action="/search" style="margin:10px;">
-                                <li class="nav-item active">
-                                        {{search_form.price}}
+  
+                            {{wtf.quick_form(search_form, action=url_for('main.search'))}} 
 
-                                </li>
-                                <li class="nav-item active">
-                                        {{search_form.location}}
-                                        {{search_form.csrf_token }}
-
-                                </li>
-                                <li class="nav-item active">
-                                        <input type="submit" value="Go">
-                                </li>
-                              </form>
-                            
                            
                                </div>
 
             
                             <!-- right aligned menu items thanks to ml-auto -->
                             <ul class="nav navbar-nav ml-auto">
+
                                     <li class="nav-item active">
                                             <a href ="./logout"class="nav-item nav-link text-light active"><i class="fas fa-globe-asia" style="font-size: 150%"></i> {% if current_user.is_authenticated %}
                                                 Hi {{ current_user.name }}!{% else %} User is not Logged in

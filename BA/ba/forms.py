@@ -25,12 +25,12 @@ class LoginForm(FlaskForm):
 # item form
 class itemForm(FlaskForm):
 
-    title = StringField('Fancy Title', validators=[InputRequired()])
-    description = StringField('Room Description', validators=[InputRequired()])
-    image = FileField('image', validators=[FileRequired(),FileAllowed({ 'jpg', 'JPG', 'png', 'PNG'}, 'Images only!')])
+    title = StringField('Fancy Title', validators=[InputRequired()],render_kw={"placeholder": "Get an eye tracking title"})
+    description = StringField('Room Description', validators=[InputRequired()],render_kw={"placeholder": "What makes your properity stand out?"})
+    image = FileField('Image (png,jpeg,jpg only)', validators=[FileRequired(),FileAllowed({ 'jpg', 'JPG', 'png', 'PNG'}, 'Images only!')])
    
-    price = IntegerField('Price Per Week', validators=[InputRequired()])
-    address = StringField('Address and Postcode', validators=[InputRequired()])
+    price = IntegerField('Price Per Week', validators=[InputRequired()], render_kw={"placeholder": "140"})
+    address = StringField('Address and Postcode', validators=[InputRequired()],render_kw={"placeholder": "2 George Street, Brisbane, 4000"})
     mobile = IntegerField('Contact Number', validators=[InputRequired()])
     water = BooleanField('Water Included?')
     wifi = BooleanField('WiFi Included?')
@@ -41,6 +41,6 @@ class itemForm(FlaskForm):
 
 # Search form
 class searchForm(FlaskForm):
-    price=StringField('Price',validators=[InputRequired()])
-    location=StringField('Postcode',validators=[InputRequired()])
+    price=StringField('Highest Price You Can Afford',validators=[InputRequired()], render_kw={"placeholder": "max price"})
+    location=StringField('Enter Postcode',validators=[InputRequired()],render_kw={"placeholder": "postcode"})
     submit = SubmitField('Search')
