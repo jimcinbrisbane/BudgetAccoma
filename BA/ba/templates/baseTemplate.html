@@ -67,8 +67,8 @@
         <!--Begin Upper Bar Div-->
         <div>
             <nav class="navbar navbar-expand-lg navbar-default" style="margin-right: auto; padding-bottom: 20px">           
-            <!-- create a button for collapsing the menu -->
-
+        
+                <!-- create a button for collapsing the menu -->
                 <button style="display: none" class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -76,14 +76,13 @@
                  
             <!-- Left Alligned Features -->
                  <div class="collapse navbar-collapse">    
-                    <h1 style = "margin-left: 20px; font-size:60px;"><a href ="./">Budget Accoma</a><h1>                                 
+                    <h1 style = "margin-left: 20px; font-size:50px;"><a href ="./">Budget Accoma</a><h1>                                 
                 </div> 
 
-                <div>        
-                <!-- Right Alligned Menu Buttons -->
-                    <ul class="nav navbar-nav ml-auto">
+            <!-- Right Alligned Menu Buttons -->
+            <div>   
+                <ul class="nav navbar-nav ml-auto">
                 <!-- Show User Login status --> 
-                        
                         {% if current_user.is_authenticated %}
                         <!--commenting out cause glitchy: <i class="fas fa-globe-asia text-light" align = center> </i>-->
                         <a href ="./logout"class="nav-item nav-link text-light active"> 

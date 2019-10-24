@@ -4,6 +4,34 @@ body{
     font-family: 'Montserrat', sans-serif;
 
 }
+/* Unordered list */
+ul {
+    list-style-type: none;
+    float: left;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+
+/* Ordered list */
+li {
+    float: left;
+    padding-right: 20px;
+    border-right: solid 1px #fff;
+    text-decoration: none;
+}
+/* On hover */
+a:hover{
+    background-color: rgba(255, 255, 255, 0.075);
+    color:whitesmoke;
+    text-decoration: none;
+}
+
+/* default link color for header 1 */    
+h1 a{
+    color: whitesmoke;
+    text-decoration: none;
+}
 
 
 .bg-info{

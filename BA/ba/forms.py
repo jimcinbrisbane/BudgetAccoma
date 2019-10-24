@@ -41,6 +41,6 @@ class itemForm(FlaskForm):
 
 # Search form
 class searchForm(FlaskForm):
-    price=StringField('Highest Price You Can Afford',validators=[InputRequired()], render_kw={"placeholder": "max price"})
-    location=StringField('Enter Postcode',validators=[InputRequired()],render_kw={"placeholder": "postcode"})
+    price=StringField('Max Price In Your Range',validators=[InputRequired()], render_kw={"placeholder": "$100/w"})
+    location=StringField('Enter a Postcode',validators=[InputRequired()],render_kw={"placeholder": "4000"})
     submit = SubmitField('Search')

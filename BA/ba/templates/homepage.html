@@ -15,115 +15,168 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="../static/css/replaceugly.css">
 
+<Style>
+
+  .jumbotron{
+    background-image: url(../static/img/jumbo.jpg);
+    background-size: cover;
+    height: 800px;
+  }
+
+  #ourPicks {
+      width: 80%;
+      margin-left: 10%;
+      vertical-align: middle;
+      text-align: center;
+  }
+
+  #searchSite {
+      width: 80%;
+      margin-left: 10%;
+      margin-bottom: 100px;
+      align-content: center;
+      text-align: center;
+  }
+
+  #centerContent {
+    
+    vertical-align: middle;
+    text-align: center;
+  }
+
+</Style>
+
+
 </head>
 
 <body>
+  <!--Begin nav -->
+  <header>
+    <!-- Hero / Banner Section -->
+    <div class="jumbotron jumbotron-fluid">
+      <div class="text-white">
 
-    <!-- putting header inside container will prevent full width navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-info" style="margin-right: auto;">
+          <a class="navbar-brand text-light" href="#"></a>
+  
+          <!-- create a button for collapsing the menu -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+  
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <!--Left Menu items-->
+            <a class="nav-item nav-link text-light active" href="./landlord">Post a Listing</a>
+            {% if current_user.is_authenticated %}
+            <a class="nav-item nav-link text-light active" href="./landlordlist">View my Items</a>
+            {% endif %}
+  
+            <!-- right aligned menu items -->
+            <ul class="nav navbar-nav ml-auto">
+              <!-- Show User Login status -->
+              {% if current_user.is_authenticated %}
+              <!--commenting out cause glitchy: <i class="fas fa-globe-asia text-light" align = center> </i>-->
+              <a href="./logout" class="nav-item nav-link text-light active">
+  
+                <li> Hi {{ current_user.name }}!</li>
+              </a>
+              {% else %}
+  
+              <a href="./login" class="nav-item nav-link text-light active">
+                <li>Login </li>
+              </a>
+              {% endif %}
+  
+              <!-- Show "register" only if user is NOT logged in -->
+              {% if current_user.is_anonymous %}
+              <a class="nav-item nav-link text-light active" href="./reg">
+                Register
+              </a>
+              {% endif %}
+  
+              <!-- route to "Im renting out" -->
+              {% if current_user.is_authenticated %}
+              <a class="nav-item nav-link text-light active" href="./landlord">
+                <li> Rent Out </li>
+              </a>
+              {% endif %}
+            </ul>
+          </div>
+        </nav>
+        <!-- close nav -->
 
-    <header>
+  <section id = centerContent>
+      <p class='flu'> </p>
+      <h1 style="margin: auto; font-size: 175px;">Budget Accoma<h1>
+        <h1 style="margin: auto"> Affordable Share Houses for Poor You! </h1>
+                
+          {% with messages = get_flashed_messages() %}              
+            {% if messages %}
+              <ul class=flashes>
+                {% for message in messages %}
+                  <li>{{ message }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}            
+          {% endwith %}
 
+    </section>
 
+  </header>
+  <section id= searchSite>
+      <!-- search box -->          
+      {% block body %}
+      <p class='flu'> </p>
+      <div style="width: 80%; margin: auto;">
+        <article class="card" style="padding:40px; background-color: rgb(241, 241, 241); border-color;">
+        <h1>
+         {{wtf.quick_form(search_form, action=url_for('main.search'))}} 
+       </h1>
+      </article>
+     </div>   
+     {% endblock %}
+  </section>
 
+<div style="background-color:  rgb(108, 131, 155);">
 
-        <!-- Hero / Banner Section -->
-        <!-- Scaling text: https://www.sitepoint.com/build-responsive-type-scale-bootstrap/ -->
-
-        <div class="jumbotron jumbotron-fluid card card-image" style="background-image: url(../static/img/jumbo.jpg); height:920px; background-position: center top">
-            <div class="text-white text-center py-5 px-4">
-                <div>
-                    <nav class="navbar navbar-expand-lg navbar-light bg-info" style="margin-right: auto;">
-
-                        <a class="navbar-brand text-light" href="#">
-
-                        </a>
-                        <!-- create a button for collapsing the menu -->
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNav">
-
-                            <!-- individual menu item-->
-                            <a class="nav-item nav-link text-light active" href="./landlord">I'm renting</a>
-                            <a class="nav-item nav-link text-light active" href="./landlordlist">View my Item</a>
-
-                            <!-- right aligned menu items thanks to ml-auto -->
-                            <ul class="nav navbar-nav ml-auto">
-                                    <li class="nav-item active">
-                                            <a href ="./logout"class="nav-item nav-link text-light active"><i class="fas fa-globe-asia" style="font-size: 150%"></i> {% if current_user.is_authenticated %}
-                                                Hi {{ current_user.name }}!{% else %} User is not Logged in
-                                              {% endif %} </a>
-
-                                    </li>
-                                    <li class="nav-item active">
-                                     </li>
-
-                                   
-                                    <li class="nav-item">
-                                            <a class="nav-item nav-link text-light active" href="./reg"><i class="fas fa-igloo" style="font-size: 150%"></i> Register</a>
-
-                                    </li>
-                                    <li class="nav-item">
-                                      <p> </p>>
-                                    </li>
-                                </ul>
-
-                    </nav>
-                    <!-- close nav -->
-                    <p class='flu'> </p>
-
-                    <h1 style="margin: auto; font-size: 128px;">Budget Accoma<h1>
-                        <p> </p>
-                            <h1 style="margin: auto">Share House for Poor You!<h1>
-                                    {% with messages = get_flashed_messages() %}
-                                    {% if messages %}
-                                      <ul class=flashes>
-                                      {% for message in messages %}
-                                        <li>{{ message }}</li>
-                                      {% endfor %}
-                                      </ul>
-                                    {% endif %}
-                                  {% endwith %}
-                                  {% block body %}{% endblock %}
-                                    <p class='flu'> </p>
-
-
-                                    <div style="width: 40%; margin: auto;">{{wtf.quick_form(search_form, action=url_for('main.search'))}} </div>
-
-
-                                            </h1>
-
-                                <!-- search box -->
-                               <h1 style='margin: auto;' > </h1>
-
-
-                </div>
-            </div>
-        </div>
-        <h4 style="margin: 3%;">Our Latest Picks </h4> 
-
-        <div class="row" style="margin: 8px;">
-            {%for item in room%}
-            <div class="row" style="padding: 15px;">
-                  <div class="d-flex justify-content"">
-                    <div class="card" style="width: 25rem;margin: 12px;">
-                          <img src="..{{item.image}}" class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <h4 class="card-title">{{item.title}}</h4>
-                            <h5 class="card-title">${{item.price}}</h5>
-                            <p class="card-text"><i class="fas fa-user"></i> 4 people <br /> {{item.address}}
-                              <br />
-                              <i class="fas fa-shower"></i> <i class="fas fa-fire"></i> <i class="fas fa-wifi"></i> </p>
-                            <a href="/sharehouse/{{item.id}}" class="btn btn-primary">Check it out</a>
-                          </div>
-                    </div>
+<section id= ourPicks>
+<h1 style="font-size: 40px; padding: 40px; color: #fff;"> - Our Latest Picks - </h1> 
+<div class="card-deck" style="pad: 20px; vertical-align: middle">   
+  
+  {%for item in room%}
+  
+    <article class="card" style="background-color: rgb(108, 131, 155); border-color: rgba(255, 250, 250, 0);">
+            <div class="d-flex justify-content">
+            <div class="card" style="width: 25rem; margin: 12px; margin-bottom: 40px" >
+                  <img src="..{{item.image}}" class="card-img-top" alt="..." style= "padding: 20px;">
+                  <div class="card-body">
+                    <h4 class="card-title" style="font-size: 30px;">{{item.title}}</h4>
+                    <h5 class="card-title">${{item.price}}</h5>
+                    <hr size =1px></hr> 
+                    <p class="card-text"><i class="fas fa-user"></i> 4 people <br> {{item.address}}
+                    </br>
+                      <i class="fas fa-shower"></i> <i class="fas fa-fire"></i> <i class="fas fa-wifi"></i> </p>
+                    <a href="/sharehouse/{{item.id}}" class="btn btn-primary">Check it out</a>
                   </div>
-             </div>
-             {%endfor%}
-    </header>
+            </div>
+          </div>
+    </article>
+<p></p>
+    {%endfor%}
+  </section>
+</div>
 
+
+<div style="background-color: rgb(255, 255, 255);">
+    <footer>
+        <div style="margin-top: 20px; margin-bottom: 20px;" align = center>
+            ©2019 Budget Accoma, All Rights Reserved
+        </div>
+    </footer>
+</div>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
