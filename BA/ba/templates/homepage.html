@@ -36,6 +36,8 @@
       margin-bottom: 100px;
       align-content: center;
       text-align: center;
+      background-image: url(./);
+      background-repeat: repeat;
   }
 
   #centerContent {
@@ -151,9 +153,9 @@
             <div class="card" style="width: 25rem; margin: 12px; margin-bottom: 40px" >
                   <img src="..{{item.image}}" class="card-img-top" alt="..." style= "padding: 20px;">
                   <div class="card-body">
-                    <h4 class="card-title" style="font-size: 30px;">{{item.title}}</h4>
                     <h5 class="card-title">${{item.price}}</h5>
-                    <hr size =1px></hr> 
+                    <h4 class="card-title" style="font-size: 30px;">{{item.title}}</h4>
+                    <hr size =1px width = 80%></hr> 
                     <p class="card-text"><i class="fas fa-user"></i> 4 people <br> {{item.address}}
                     </br>
                       <i class="fas fa-shower"></i> <i class="fas fa-fire"></i> <i class="fas fa-wifi"></i> </p>
