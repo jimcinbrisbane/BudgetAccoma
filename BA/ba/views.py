@@ -69,17 +69,24 @@ def postitems():
     tag_line="I'm the landlord"
     print(current_user.id)
     room = Item.query.filter(Item.user_id == current_user.id).order_by(Item.id.desc()).all()
-    search_form = searchForm()
-    return render_template('landlordlist.html', search_form = search_form, room = room, tag_line=tag_line)
+    return render_template('landlordlist.html', room = room, tag_line=tag_line)
 
 #information page/room information route
 @mainbp.route('/landlorditem/<id>')
 def landlorditem(id):
-    info = Item.query.filter_by(id=id).first()  
     tag_line='Budget Accomadation: Cheap Sharehouse For Broke You!'
+    info = Item.query.filter_by(id=id).first()  
     aform = itemForm(obj=info)
-    name = Item.query.filter_by(id=id).first()  
     return render_template('landlorditem.html', aform=aform, tag_line=tag_line, info=info)
+
+@mainbp.route('/remove/<id>')
+def itemdelete(id):
+    #Delete Details
+     Item.query.filter_by(id=id).delete()
+     db.session.commit()
+
+    #return to main page
+     return redirect('/landlordlist')
 
 
 #information page/room information route
