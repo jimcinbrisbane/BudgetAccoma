@@ -15,8 +15,18 @@
                                 <h4><i class="fas fa-user"></i> 4 people <br /> {{info.address}}
 
                                     <br />
-                                    <i class="fas fa-shower"></i> <i class="fas fa-fire"></i> <i class="fas fa-wifi"></i> </p></h4>
-                                
+                                    {% if info.water == true %}
+                                    <i class="fas fa-shower"></i> 
+                                    {% endif %}
+                                    {% if info.gas == true %}
+                                    <i class="fas fa-fire"></i>
+                                    {% endif %}
+                                    {% if info.wifi == true %}
+                                    <i class="fas fa-wifi"></i>
+                                    {% endif %}
+                                    {% if info.eletricty == true %}
+                                    <i class="fas fa-bolt"></i>
+                                    {% endif %}                                
                                     <div class="row">
                                             <div class="col-sm-7 col-md-8 col-lg-9">
                                                 <p class="post-body" style="max-height: none;">{{info.description}}

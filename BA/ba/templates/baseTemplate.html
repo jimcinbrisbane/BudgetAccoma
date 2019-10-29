@@ -122,9 +122,9 @@
 
 {% with messages = get_flashed_messages() %}
   {% if messages %}
-    <ul class=flashes>
+    <ul  style="color: aliceblue; margin:auto; width:100%" class=flashes>
     {% for message in messages %}
-      <li style="color: aliceblue;">{{ message }}</li>
+      <li style="color: aliceblue; margin:auto; width:100%">{{ message }}</li>
     {% endfor %}
     </ul>
   {% endif %}

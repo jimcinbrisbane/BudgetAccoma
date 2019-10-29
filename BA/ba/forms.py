@@ -10,6 +10,7 @@ class RegestierForm(FlaskForm):
 
     #get user data
     user_name = StringField('Username*', validators=[InputRequired()])
+    mobile = IntegerField('mobile_number*', validators=[InputRequired()])
     email = StringField('Email Address*', validators=[InputRequired()])
     password = PasswordField('Enter a Password*', validators = [InputRequired()])
     confirm = PasswordField('Confirm Password*', validators=[InputRequired()])

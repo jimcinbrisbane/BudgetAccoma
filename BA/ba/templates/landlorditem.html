@@ -8,28 +8,39 @@
 {% block content %}
   <!--New item form-->
 
-  {{biditem}}
+    <a href="/landlordlist" style="border-radius: 3px!important; ;margin-right: 8px"> Go Back </a>
   <body>
-      {%for bid in biditem%}
-
       <div style="padding:40px">
           <div style="padding:32px; text-align: left; background-color:rgba(255,255,255,0.92); color:black">                        
-<h3>People who are interested in your item</h3>
+<h3><b>People who are interested in your item</b></h3>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
 
- <h4> Bid Date</h4>
-<p>  {{bid.date}} 
-  </p>
-<p> User ID:{{bid.user_id}}
+      {%for bid in biditem%}
 
+      
+
+ <h5> <b>Bid</b></h5>
+<p>This was being did on:  {{bid.date}} 
   </p>
+<p> User Name:{{bid.user_name}}</p> 
+<p> mobile:{{bid.mobile}}</p> 
+<p> </p>
+<p> </p>
+<p> </p>
+
+
   {%endfor%}
+</div>
 
+</div>
+  <div style="padding:32px; text-align: left; background-color:rgba(255,255,255,0.99); color:black">                        
 
-            <a href="/landlordlist" style="border-radius: 3px!important; ;margin-right: 8px"> Go Back </a>
-          </div>
-      </div>
     <div style="padding:40px">
-      <div style="padding:32px; text-align: left; background-color:rgba(255,255,255,0.92); color:black">                        
+      <div style="padding:32px; text-align: left; background-color:rgba(255,255,255,0.99); color:black">                        
         {{wtf.quick_form(aform, action=url_for('main.update_item',id=info.id))}} 
         <a href="/landlordlist" style="border-radius: 3px!important; ;margin-right: 8px"> Go Back </a>
         <a href="/remove/{{info.id}}" style="border-radius: 3px!important;"> Delete this item </a>

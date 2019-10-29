@@ -9,6 +9,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(32), index=True, unique=True, nullable=False)
     emailid = db.Column(db.String(32), index=True, nullable=False)
+    mobile = db.Column(db.String(32), index=True, nullable=False)
 	#password is never stored in the DB, an encrypted password is stored
 	# the storage should be at least 255 chars long
     password_hash = db.Column(db.String(255), nullable=False)
@@ -32,15 +33,16 @@ class Item(db.Model, UserMixin):
     mobile = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     def __repr__(self): #string print method
-        return "<id: {}, image: {}, title: {}, description: {}, price: {}, address: {}>".format(self.id, self.image, self.title, self.description, self.price, self.address)
+        return "<id: {}, image: {}, title: {}, description: {}, price: {}, address: {},water:{},wifi{},eletricity{},gas{}>".format(self.id, self.image, self.title, self.description, self.price, self.address, self.water, self.wifi, self.eletricity, self.gas)
 
 #bid sigma
 class Bid(db.Model):
     __tablename__ = 'bid'
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_name = db.Column(db.Integer, db.ForeignKey('user.name'))
+    mobile = db.Column(db.Integer, db.ForeignKey('user.mobile'))
     item_id = db.Column(db.String, db.ForeignKey('item.id'))
     def __repr__(self): #string print method
 
-         return "<id: {}, date: {}, user_id: {},item_id: {}>".format(self.id, self.date, self.user_id, self.item_id)
+         return "<id: {}, date: {}, user_name: {},item_id: {},mobile:{}>".format(self.id, self.date, self.user_name, self.item_id, self.mobile)

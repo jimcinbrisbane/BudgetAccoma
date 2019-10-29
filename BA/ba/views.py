@@ -226,7 +226,8 @@ def update_item():
 def place_bid(id):
     newbid=Bid(date=datetime.datetime.now(),
             item_id=id,
-            user_id=current_user.id
+            user_name=current_user.name,
+            mobile=current_user.mobile,
             )
     print(datetime.datetime.now(),id,current_user.id)
     db.session.add(newbid)
@@ -253,12 +254,14 @@ def register():
         username = registerform.user_name.data
         pass_word = registerform.password.data
         email = registerform.email.data
+        mobile = registerform.mobile.data
 
-        #create password hash
-        hashWord = generate_password_hash(pass_word)
+
+        #create password hash, salted for security
+        hashWord = generate_password_hash(pass_word+username)
 
         #create a new user account
-        newUser = User(name=username, emailid=email, password_hash=hashWord)
+        newUser = User(name=username, emailid=email, mobile=mobile, password_hash=hashWord)
         db.session.add(newUser)
         db.session.commit()
 
@@ -300,7 +303,7 @@ def log():
             error='Incorrect Username'
             flash(error)
             print(error)
-        elif not check_password_hash(u1.password_hash,pass_word):
+        elif not check_password_hash(u1.password_hash,pass_word+username):
             error='Incorrect Password'
             flash(error)
             print(error)
