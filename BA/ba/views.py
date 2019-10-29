@@ -176,6 +176,49 @@ def create_item():
     flash('Successfully created new travel destination', 'success')
     print('Successfully created new room info', 'success')
     return redirect(url_for('main.index'))
+
+
+#############################################
+#           U P D A T E - I T E M           #                
+#############################################
+#fetch item form and insert it to database
+
+@mainbp.route('/update', methods = ['GET','POST'])
+def update_item():
+  id =  request.args.get('id', None)
+  aform = itemForm()
+  if aform.validate_on_submit():
+    db_file_path=check_upload_file(aform)
+    print(db_file_path)
+    # a simple function: doesnot handle errors in file types and file not being uploaded
+    
+    # if the form was successfully submitted, access the values in the form data
+    
+    #insert item into database
+    #add the object to the db session
+    
+    
+    data = {Item.title:aform.title.data, 
+                Item.description:aform.description.data,
+                Item.image: db_file_path,
+                Item.price: aform.price.data,
+                Item.address:aform.address.data,
+                Item.water : aform.water.data,
+                Item.wifi : aform.wifi.data,
+                Item.eletricity : aform.eletricity.data,
+                Item.gas : aform.gas.data,
+                Item.mobile : aform.mobile.data}
+    db.session.query(Item).filter_by(id=id).update(data)
+    
+    #commit to the database
+    db.session.commit()
+    flash('Successfully created new travel destination', 'success')
+    print('Successfully created new room info', 'success')
+    return redirect('/landlordlist')
+
+
+
+
 #############################################
 #           ADD BID                         #
 #############################################

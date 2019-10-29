@@ -30,7 +30,7 @@
       </div>
     <div style="padding:40px">
       <div style="padding:32px; text-align: left; background-color:rgba(255,255,255,0.92); color:black">                        
-        {{wtf.quick_form(aform, action=url_for('main.create_item'))}} 
+        {{wtf.quick_form(aform, action=url_for('main.update_item',id=info.id))}} 
         <a href="/landlordlist" style="border-radius: 3px!important; ;margin-right: 8px"> Go Back </a>
         <a href="/remove/{{info.id}}" style="border-radius: 3px!important;"> Delete this item </a>
       </div>
