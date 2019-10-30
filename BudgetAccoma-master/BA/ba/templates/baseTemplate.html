@@ -1,0 +1,148 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Budget Accomma: Cheap Accomadation</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="../static/css/replaceugly.css">
+</head>
+<!--
+#############################################
+#             Styling Overrides             #                
+#############################################
+-->
+
+<style>
+    /* Unordered list */
+        ul {
+            list-style-type: none;
+            float: left;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+    /* Ordered list */
+        li {
+            float: left;
+            padding-right: 20px;
+            border-right: solid 1px #fff;
+            text-decoration: none;
+        }
+    /* On hover */
+        a:hover{
+            background-color: rgba(255, 255, 255, 0.075);
+            color:whitesmoke;
+            text-decoration: none;
+        }
+
+    /* default link color for header 1 */    
+        h1 a{
+            color: whitesmoke;
+            text-decoration: none;
+        }
+
+</style>
+
+<!--
+#############################################
+#               Header Bar               #                
+#############################################
+-->
+
+<body>  
+    <!--Hero Image / background?-->
+    <div class="jumbotron jumbotron-fluid card card-image" style="background-image: url(../static/img/jumbo.jpg); height:1080px; background-position: top">
+    
+        <!--Begin Upper Bar Div-->
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-default" style="margin-right: auto; padding-bottom: 20px">           
+        
+                <!-- create a button for collapsing the menu -->
+                <button style="display: none" class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                 
+            <!-- Left Alligned Features -->
+                 <div class="collapse navbar-collapse">    
+                    <h1 style = "margin-left: 20px; font-size:50px;"><a href ="./">Budget Accoma</a><h1>                                 
+                </div> 
+
+            <!-- Right Alligned Menu Buttons -->
+            <div>   
+                <ul class="nav navbar-nav ml-auto">
+                <!-- Show User Login status --> 
+                        {% if current_user.is_authenticated %}
+                        <!--commenting out cause glitchy: <i class="fas fa-globe-asia text-light" align = center> </i>-->
+                        <a href ="./logout"class="nav-item nav-link text-light active"> 
+                            
+                            <li> Hi {{ current_user.name }}!</li></a>            
+                        {% else %}
+
+                        <a href ="./login"class="nav-item nav-link text-light active">  
+                            <li>Login </li>
+                        </a>  
+                        {% endif %}
+
+                <!-- Show "register" only if user is NOT logged in -->
+                        {% if current_user.is_anonymous %} 
+                        <a class="nav-item nav-link text-light active" href="./reg">
+                             Register 
+                        </a> 
+                        {% endif %}
+                   
+                <!-- route to "Im renting out" -->
+                    {% if current_user.is_authenticated %}
+                    <a class="nav-item nav-link text-light active" href="./landlord">
+                        <li> Rent Out </li>
+                    </a>  
+                    {% endif %}  
+                  
+
+                 <!-- route to view item --> 
+                
+                    <a class="nav-item nav-link text-light active" href="./landlordlist">
+                    {% if current_user.is_authenticated %}
+                     View My Listings   
+                    {% endif %} 
+                    </a>              
+                </ul>
+            </div>  
+        </nav>
+    </div>
+    
+<!-- ??? -->
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul  style="color: aliceblue; margin:auto; width:100%" class=flashes>
+    {% for message in messages %}
+      <li style="color: aliceblue; margin:auto; width:100%">{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% block body %}
+{% endblock %}
+{% block content %} 
+{% endblock %} 
+</div>
+</body>    
+           
+<!--
+#############################################
+#                  Footer                   #                
+#############################################
+-->
+<footer>
+    <div style="margin-top: 20px; margin-bottom: 20px;" align = center>
+        ©2019 Budget Accoma, All Rights Reserved
+    </div>
+</footer>

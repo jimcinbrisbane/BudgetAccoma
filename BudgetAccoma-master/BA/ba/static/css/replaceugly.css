@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+body{
+    font-family: 'Montserrat', sans-serif;
+
+}
+/* Unordered list */
+ul {
+    list-style-type: none;
+    float: left;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+
+/* Ordered list */
+li {
+    float: left;
+    padding-right: 20px;
+    border-right: solid 1px #fff;
+    text-decoration: none;
+}
+/* On hover */
+a:hover{
+    background-color: rgba(255, 255, 255, 0.075);
+    color:blue;
+    text-decoration: none;
+}
+
+/* default link color for header 1 */    
+h1 a{
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+
+.bg-info{
+    background-color: transparent !important; 
+}
+.jumbotron-fluid{
+
+padding-top: 8px !important;
+
+}
+
+h1{
+    font-family: 'Permanent Marker', cursive !important;
+}
+
+a.text-light:focus, a.text-light:hover{
+    border-bottom: 1px solid blue !important;
+}
+
+.flu{
+    height: 80px
+}
+
+body{
+    position: relative;
+}
+.navbar-expand-lg .navbar-default .navbar-collapse{
+    height:60px;
+    background:rgba(0, 0, 0, 0.075);
+}
+.btn btn-default{
+    background-color: rgb(28, 28, 136) !important; 
+
+}
+#price{
+    background-color: white;
+    width: 100%;
+    padding: 5px;
+    border-radius: 8px;
+    resize: vertical;  
+    border-color: transparent ; 
+
+}
+#btn {
+    background-color: rgb(2, 129, 255);
+    border: none;
+    color: white;
+    padding: 12px 18px 1px 18px;
+    text-align: center;
+    font-size: 16px;
+    margin: 2px 8px -24px 8px;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 0px 0px 8px 8px;
+    top: 100px;
+  }
+
+#submit {
+    background-color: rgb(2, 129, 255);
+    border: none;
+    color: white;
+    padding: 10px 100px 10px 100px;
+    text-align: center;
+    font-size: 16px;
+    margin: 2px 8px -1px 8px;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 0px 0px 8px 8px;
+    font-size: 72%;
+  }  
+#submit:hover {    
+    background-color: rgb(0, 20, 50);
+}
+
+#btn:hover {    
+    background-color: rgb(0, 20, 50);
+}
+
+#location{
+    background-color: white;
+    width: 100%;
+    padding: 5px;
+    border-color: transparent ; 
+    border-radius: 8px;
+    resize: vertical;   
+}
+
+::placeholder {
+        color: lightcyan;
+        opacity: 1; /* Firefox */
+      }
+      
+      :-ms-input-placeholder { /* Internet Explorer 10-11 */
+       color:lightcyan;
+      }
+      
+      ::-ms-input-placeholder { /* Microsoft Edge */
+       color: lightcyan;}
+
+@media only screen and (max-width: 800px)
+{
+.flu{
+    height: 2px;
+}}
+
+

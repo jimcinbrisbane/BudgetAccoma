@@ -1,0 +1,45 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "baseTemplate.html" %}
+
+{% block content %}
+
+        <h4 style="margin-left: 3%; color:white">Search Results</h4> 
+
+        <div class="row" style="margin: 3%;">
+            {%for item in room%}
+            <div class="row" style="padding: 15px; margin: 3px;">
+                  <div class="d-flex justify-content"">
+                    <div class="card" style="width: 25rem;margin-left: -12px; color: #000">
+                          <img src="..{{item.image}}" class="card-img-top" alt="...">
+                          <div class="card-body">
+                            <h4 class="card-title">{% if item.sold==true %}
+                              (SOLD)
+                              {% endif %}   
+                                {{item.title}}</h4>
+                            <h5 class="card-title">${{item.price}}</h5>
+                            <p class="card-text"><i class="fas fa-user"></i> 4 people <br /> {{item.address}}
+                              <br />
+                              {% if item.water == true %}
+                              <i class="fas fa-shower"></i> 
+                              {% endif %}
+                              {% if item.gas == true %}
+                              <i class="fas fa-fire"></i>
+                              {% endif %}
+                              {% if item.wifi == true %}
+                              <i class="fas fa-wifi"></i>
+                              {% endif %}
+                              {% if item.eletricty == true %}
+                              <i class="fas fa-bolt"></i>
+                              {% endif %}                            <a href="/sharehouse/{{item.id}}" class="btn btn-primary">Check it out</a>
+                          </div>
+                    </div>
+                  </div>
+             </div>
+             {%endfor%}
+    </header>
+
+
+
+
+
+{% endblock %}
