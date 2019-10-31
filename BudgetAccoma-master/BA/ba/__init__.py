@@ -18,7 +18,7 @@ def create_app():
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     #connectdb
     app.config.from_mapping(
-        SQLALCHEMY_DATABASE_URI=os.environ['postgresql-angular-50184']
+        SQLALCHEMY_DATABASE_URI=os.environ['postgresql-octagonal-85682']
     )
     #initialize db with flask app
     db.init_app(app)
