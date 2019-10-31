@@ -18,9 +18,9 @@ def create_app():
     #connectdb
     app.config.from_mapping(
         SQLALCHEMY_DATABASE_URI=os.environ['postgresql-angular-50184']
-        #initialize db with flask app
-        db.init_app(app)
     )
+    #initialize db with flask app
+    db.init_app(app)
     # error handler
     @app.errorhandler(404)
     def not_found(e):
