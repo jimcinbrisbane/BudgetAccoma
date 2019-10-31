@@ -17,7 +17,7 @@ def create_app():
     UPLOAD_FOLDER = '/static/image'
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     #connectdb
-    app.config['SQLALCHEMY_DATABASE_URI']=os.environ['postgresql-octagonal-85682']
+    app.config['SQLALCHEMY_DATABASE_URI']=os.environ['DATABASE_URL']
     #initialize db with flask app
     db.init_app(app)
     # error handler
