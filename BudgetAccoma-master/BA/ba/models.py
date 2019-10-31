@@ -41,7 +41,7 @@ class Bid(db.Model):
     __tablename__ = 'bid'
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime)
-    user_name = db.Column(db.Integer, db.ForeignKey('user.name'))
+    user_name = db.Column(db.String, db.ForeignKey('user.name'))
     mobile = db.Column(db.Integer, db.ForeignKey('user.mobile'))
     item_id = db.Column(db.String, db.ForeignKey('item.id'))
     def __repr__(self): #string print method
