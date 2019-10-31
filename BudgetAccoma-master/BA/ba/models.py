@@ -7,7 +7,7 @@ from datetime import datetime
 class User(db.Model, UserMixin):
     __tablename__='user' # good practice to specify table name
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(32), index=True, nullable=False)
+    name = db.Column(db.String(32), index=True, unique=True, nullable=False)
     emailid = db.Column(db.String(32), index=True, nullable=False)
     mobile = db.Column(db.String(32), index=True, nullable=False)
 	#password is never stored in the DB, an encrypted password is stored
