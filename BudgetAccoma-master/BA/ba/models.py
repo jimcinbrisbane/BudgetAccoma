@@ -20,7 +20,7 @@ class User(db.Model, UserMixin):
 #item sigma
 class Item(db.Model, UserMixin):
     __tablename__ = 'item'
-    id = db.Column(db.String(32), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(32))
     description = db.Column(db.String(255))
     image = db.Column(db.String(32))
