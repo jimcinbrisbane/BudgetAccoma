@@ -20,7 +20,7 @@ class User(db.Model, UserMixin):
 #item sigma
 class Item(db.Model, UserMixin):
     __tablename__ = 'item'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.String, primary_key=True)
     title = db.Column(db.String(32))
     description = db.Column(db.String(255))
     image = db.Column(db.String(32))
@@ -41,8 +41,8 @@ class Bid(db.Model):
     __tablename__ = 'bid'
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime)
-    user_name = db.Column(db.String, db.ForeignKey('user.name'))
-    mobile = db.Column(db.String, db.ForeignKey('user.mobile'))
+    user_name = db.Column(db.Integer, db.ForeignKey('user.name'))
+    mobile = db.Column(db.Integer, db.ForeignKey('user.mobile'))
     item_id = db.Column(db.String, db.ForeignKey('item.id'))
     def __repr__(self): #string print method
 
