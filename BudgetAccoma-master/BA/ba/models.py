@@ -7,7 +7,7 @@ from datetime import datetime
 class User(db.Model, UserMixin):
     __tablename__='user' # good practice to specify table name
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(32), index=True, unique=True, nullable=False)
+    name = db.Column(db.String(32), index=True, nullable=False)
     emailid = db.Column(db.String(32), index=True, nullable=False)
     mobile = db.Column(db.String(32), index=True, nullable=False)
 	#password is never stored in the DB, an encrypted password is stored
@@ -41,7 +41,7 @@ class Bid(db.Model):
     __tablename__ = 'bid'
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime)
-    user_name = db.Column(db.String(32), db.ForeignKey('user.name'))
+    user_name = db.Column(db.String, db.ForeignKey('user.name'))
     mobile = db.Column(db.Integer, db.ForeignKey('user.mobile'))
     item_id = db.Column(db.String, db.ForeignKey('item.id'))
     def __repr__(self): #string print method
