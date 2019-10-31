@@ -16,9 +16,11 @@ def create_app():
     UPLOAD_FOLDER = '/static/image'
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     #connectdb
-    app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///travel123.sqlite'
-    #initialize db with flask app
-    db.init_app(app)
+    app.config.from_mapping(
+        SQLALCHEMY_DATABASE_URI=os.environ['postgresql-animate-82625']
+        #initialize db with flask app
+        db.init_app(app)
+    )
     # error handler
     @app.errorhandler(404)
     def not_found(e):
