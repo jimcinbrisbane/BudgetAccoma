@@ -1,10 +1,7 @@
-# BudgetAccoma
+# BudgetAccoma   https://budgetaccoma1.herokuapp.com/
 
 Flask Market Place 
 
-#Heroku Cloud Deployment https://budgetaccoma1.herokuapp.com/
-
- 
   
    
 git clone https://github.com/jimcinbrisbane/BudgetAccoma.git
