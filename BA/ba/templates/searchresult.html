@@ -12,20 +12,20 @@
                     <div class="card" style="width: 25rem;margin-left: -12px; color: #000">
                           <img src="..{{item.image}}" class="card-img-top" alt="...">
                           <div class="card-body">
-                            <h4 class="card-title">{{item.title}}</h4>
-                            <h5 class="card-title">${{item.price}}</h5>
+                              <h2 style="text-align: center">{% if item.sold == true %}
+                                  (SOLD){% endif %}{{item.title}}</h2>                            <h5 class="card-title">${{item.price}}</h5>
                             <p class="card-text"><i class="fas fa-user"></i> 4 people <br /> {{item.address}}
                               <br />
-                              {% if {item.water} == true %}
+                              {% if item.water == true %}
                               <i class="fas fa-shower"></i> 
                               {% endif %}
-                              {% if {item.gas} == true %}
+                              {% if item.gas == true %}
                               <i class="fas fa-fire"></i>
                               {% endif %}
-                              {% if {item.wifi} == true %}
+                              {% if item.wifi == true %}
                               <i class="fas fa-wifi"></i>
                               {% endif %}
-                              {% if item.eletricty == true %}
+                              {% if item.eletricity == true %}
                               <i class="fas fa-bolt"></i>
                               {% endif %}                            <a href="/sharehouse/{{item.id}}" class="btn btn-primary">Check it out</a>
                           </div>

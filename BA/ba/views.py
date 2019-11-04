@@ -100,7 +100,14 @@ def landlorditem(id):
     aform = itemForm(obj=info)
     biditem = Bid.query.filter_by(item_id = id).all()
     return render_template('landlorditem.html',biditem=biditem, search_form = search_form,aform=aform, tag_line=tag_line, info=info)
+@mainbp.route('/sold/<id>')
+def itemsold(id):
+    #Delete Details
+     Item.query.filter_by(id=id).first().sold = True
+     db.session.commit()
 
+    #return to main page
+     return redirect('/landlordlist')
 @mainbp.route('/remove/<id>')
 def itemdelete(id):
     #Delete Details
@@ -166,6 +173,7 @@ def create_item():
                 gas = aform.gas.data,
                 mobile = aform.mobile.data,
                 user_id = current_user.id,
+                sold = 1
                 )
 
     #add the object to the db session

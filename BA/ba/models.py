@@ -31,6 +31,7 @@ class Item(db.Model, UserMixin):
     eletricity = db.Column(db.Boolean)
     gas = db.Column(db.Boolean)
     mobile = db.Column(db.Integer)
+    sold = db.Column(db.Boolean)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     def __repr__(self): #string print method
         return "<id: {}, image: {}, title: {}, description: {}, price: {}, address: {},water:{},wifi{},eletricity{},gas{}>".format(self.id, self.image, self.title, self.description, self.price, self.address, self.water, self.wifi, self.eletricity, self.gas)

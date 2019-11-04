@@ -69,7 +69,6 @@
   
           <div class="collapse navbar-collapse" id="navbarNav">
             <!--Left Menu items-->
-            <a class="nav-item nav-link text-light active" href="./landlord">Post a Listing</a>
             {% if current_user.is_authenticated %}
             <a class="nav-item nav-link text-light active" href="./landlordlist">View my Items</a>
             {% endif %}
@@ -154,7 +153,8 @@
                   <img src="..{{item.image}}" class="card-img-top" alt="..." style= "padding: 20px;">
                   <div class="card-body">
                     <h5 class="card-title">${{item.price}}</h5>
-                    <h4 class="card-title" style="font-size: 30px;">{{item.title}}</h4>
+                    <h4 class="card-title" style="font-size: 30px;">{% if item.sold == true %}
+                      (SOLD)                        {% endif %}{{item.title}}</h4>
                     <hr size =1px width = 80%></hr> 
                     <p class="card-text"><i class="fas fa-user"></i> 4 people <br> {{item.address}}
                     </br>
@@ -167,7 +167,7 @@
                     {% if item.wifi == true %}
                     <i class="fas fa-wifi"></i>
                     {% endif %}
-                    {% if item.eletricty == true %}
+                    {% if item.eletricity == true %}
                     <i class="fas fa-bolt"></i>
                     {% endif %}
                   </br>
