@@ -269,12 +269,15 @@ def register():
         hashWord = generate_password_hash(pass_word+username)
 
         #create a new user account
-        newUser = User(name=username, emailid=email, mobile=mobile, password_hash=hashWord)
-        db.session.add(newUser)
-        db.session.commit()
-
-        #return to main page
-        return redirect(url_for('main.login'))
+        try: 
+            newUser = User(name=username, emailid=email, mobile=mobile, password_hash=hashWord)
+            db.session.add(newUser)
+            db.session.commit()
+            return redirect(url_for('main.login'))
+        except:
+            flash("Looks like the user name had been used, try another one!" )
+            print("username duplcated")
+            return redirect(url_for('main.reg'))
 
 #############################################
 #                 L O G I N                 #                
